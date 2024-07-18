@@ -1,6 +1,6 @@
-# OdStyle
+# OkaCSS
 
-OdStyle adalah framework CSS yang sederhana dan efektif untuk membangun antarmuka web yang modern dan responsif.
+OkaCSS adalah framework CSS yang sederhana dan efektif untuk membangun antarmuka web yang modern dan responsif.
 
 ## Apa saja fitur-nya?
 
@@ -8,10 +8,10 @@ OdStyle adalah framework CSS yang sederhana dan efektif untuk membangun antarmuk
 
 ## Instalasi-nya bagaimana?
 
-Anda dapat menginstal OdStyle melalui npm dengan perintah berikut:
+Anda dapat menginstal OkaCSS melalui npm dengan perintah berikut:
 
 ```bash
-npm install odstyle
+npm install okacss
 ```
 
 ## Ada pertanyaan?
