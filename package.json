@@ -1,0 +1,26 @@
+{
+	"name": "okacss",
+	"version": "1.0.0",
+	"description": "OkaCSS adalah framework CSS yang sederhana dan efektif untuk membangun antarmuka web yang modern dan menarik.",
+	"main": "okacss.css",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/kalokaradia/okacss.git"
+	},
+	"keywords": [
+		"css",
+		"framework",
+		"frameworkcss",
+		"frontend",
+		"style"
+	],
+	"author": "kaloka-radia-nanda",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/kalokaradia/okacss/issues"
+	},
+	"homepage": "https://github.com/kalokaradia/okacss#readme"
+}
