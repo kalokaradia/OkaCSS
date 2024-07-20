@@ -1,6 +1,6 @@
 {
 	"name": "okacss",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"description": "OkaCSS adalah framework CSS yang sederhana dan efektif untuk membangun antarmuka web yang modern dan menarik.",
 	"main": "okacss.css",
 	"scripts": {
