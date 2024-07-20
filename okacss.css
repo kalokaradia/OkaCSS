@@ -87,8 +87,12 @@ video {
   padding: 0;
   border: 0;
   font-size: 100%;
+  text-decoration: none;
+  color: initial;
+  background-color: initial;
   font: inherit;
   vertical-align: baseline;
+  font-family: var(--ost-default-family);
 }
 
 /* HTML5 display-role reset for older browsers */
