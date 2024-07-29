@@ -1,20 +1,20 @@
 # OkaCSS
 
-OkaCSS adalah framework CSS yang sederhana dan efektif untuk membangun antarmuka web yang modern dan responsif.
+OkaCSS is a simple and effective CSS framework for building modern and responsive web interfaces.
 
-## Apa saja fitur-nya?
+## What are the features?
 
--   **Mudah Digunakan:** Sintaks yang sederhana dan intuitif.
+-   **Easy to Use:** Simple and intuitive syntax.
 
-## Instalasi-nya bagaimana?
+## How is the installation?
 
-Anda dapat menginstal OkaCSS melalui npm dengan perintah berikut:
+You can install OkaCSS via npm with the following command:
 
 ```bash
 npm install okacss
 ```
 
-## Ada pertanyaan?
+## Any questions?
 
-Anda dapat menghubungi author lewat email ini:
+You can contact the author via this email:
 kalokaradia@gmail.com
