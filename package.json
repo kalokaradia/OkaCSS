@@ -1,6 +1,6 @@
 {
 	"name": "okacss",
-	"version": "1.0.4",
+	"version": "2.0.0",
 	"description": "OkaCSS is a simple and effective CSS framework for building modern and responsive web interfaces.",
 	"main": "okacss.css",
 	"scripts": {
@@ -22,5 +22,8 @@
 	"bugs": {
 		"url": "https://github.com/kalokaradia/okacss/issues"
 	},
-	"homepage": "https://github.com/kalokaradia/okacss#readme"
+	"homepage": "https://github.com/kalokaradia/okacss#readme",
+	"dependencies": {
+		"sass": "^1.83.0"
+	}
 }

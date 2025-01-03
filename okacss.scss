@@ -1,29 +1,329 @@
+// ? USE SASS
+@use "sass:meta";
+@use "sass:list";
+
 // ? VARIABLE
-$ost-default-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+$oka-default-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
 	Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 
-$ost-colors: (
+$oka-colors: (
 	"white": #fff,
+	"transparent": transparent,
 	"black": #000,
 	"dark": #1d1d1d,
 	"light": #f4f4f4,
-	"gray": #898989,
-	"red": #ff3535,
-	"orange": #ff8f2d,
-	"gold": #ffc619,
-	"yellow": #ffff35,
-	"lime": #89f714,
-	"grass": #06d006,
-	"teal": #14b8a6,
-	"cyan": #15cfef,
-	"sky": #0e91e9,
-	"blue": #1d60cb,
-	"indigo": #7519ff,
-	"violet": #8c28ff,
-	"purple": #c629ff,
-	"magenta": #e72fff,
-	"pink": #ff56ab,
-	"rose": #ff1943,
+	"gunsmoke": (
+		50: #f6f6f6,
+		100: #e7e7e7,
+		200: #d1d1d1,
+		300: #b0b0b0,
+		400: #898989,
+		500: #6d6d6d,
+		600: #5d5d5d,
+		700: #4f4f4f,
+		800: #454545,
+		900: #3d3d3d,
+		950: #262626,
+	),
+	"lynch": (
+		50: #f4f8f9,
+		100: #ebf2f4,
+		200: #dbe6ea,
+		300: #c4d6dd,
+		400: #abc2ce,
+		500: #95aebf,
+		600: #7f96ac,
+		700: #667a8f,
+		800: #596a7a,
+		900: #4c5963,
+		950: #2c333a,
+	),
+	"kimberly": (
+		50: #f3f6fa,
+		100: #eaedf5,
+		200: #d8deed,
+		300: #c0c8e1,
+		400: #a6add3,
+		500: #8f94c5,
+		600: #7778b4,
+		700: #6a6aa0,
+		800: #54557f,
+		900: #484967,
+		950: #2a2a3c,
+	),
+	"dovegray": (
+		50: #f6f6f6,
+		100: #e7e7e7,
+		200: #d1d1d1,
+		300: #b0b0b0,
+		400: #888888,
+		500: #717171,
+		600: #5d5d5d,
+		700: #4f4f4f,
+		800: #454545,
+		900: #3d3d3d,
+		950: #262626,
+	),
+	"hillary": (
+		50: #f8f7f4,
+		100: #eeeee6,
+		200: #dcdacc,
+		300: #c6c2ab,
+		400: #ada587,
+		500: #9e9271,
+		600: #918365,
+		700: #796c55,
+		800: #635849,
+		900: #51493d,
+		950: #2b261f,
+	),
+	"red": (
+		50: #fff1f1,
+		100: #ffdfdf,
+		200: #ffc5c5,
+		300: #ff9d9d,
+		400: #ff6464,
+		500: #ff3535,
+		600: #ed1515,
+		700: #c80d0d,
+		800: #a50f0f,
+		900: #881414,
+		950: #4b0404,
+	),
+	"temarind": (
+		50: #fbf5f1,
+		100: #f5e7df,
+		200: #ebccbd,
+		300: #dea993,
+		400: #d07f67,
+		500: #c5614a,
+		600: #b84e3e,
+		700: #993c35,
+		800: #7b3331,
+		900: #642c2a,
+		950: #2c1111,
+	),
+	"carrot": (
+		50: #fff7ed,
+		100: #ffeed4,
+		200: #ffd8a8,
+		300: #ffbc71,
+		400: #ff8f2d,
+		500: #fe7611,
+		600: #ef5b07,
+		700: #c64208,
+		800: #9d350f,
+		900: #7e2e10,
+		950: #441406,
+	),
+	"supernova": (
+		50: #fffceb,
+		100: #fff6c6,
+		200: #ffeb88,
+		300: #ffdb4a,
+		400: #ffc619,
+		500: #f9a707,
+		600: #dd7e02,
+		700: #b75906,
+		800: #94430c,
+		900: #7a370d,
+		950: #461c02,
+	),
+	"yellow": (
+		50: #fcfee8,
+		100: #faffc2,
+		200: #faff89,
+		300: #ffff35,
+		400: #fdf312,
+		500: #ecd906,
+		600: #ccab02,
+		700: #a37b05,
+		800: #86600d,
+		900: #724e11,
+		950: #432a05,
+	),
+	"chartreuse": (
+		50: #f5ffe5,
+		100: #e8ffc6,
+		200: #d1ff94,
+		300: #b0ff56,
+		400: #89f714,
+		500: #71de04,
+		600: #55b200,
+		700: #408704,
+		800: #366a0a,
+		900: #2e590e,
+		950: #153201,
+	),
+	"sushi": (
+		50: #f7fde8,
+		100: #edf9ce,
+		200: #dbf3a3,
+		300: #c2e96d,
+		400: #a8db40,
+		500: #7fb21f,
+		600: #699a16,
+		700: #517516,
+		800: #415d17,
+		900: #394f18,
+		950: #1c2b08,
+	),
+	"malachite": (
+		50: #e8ffe5,
+		100: #cbffc7,
+		200: #9bff95,
+		300: #5dfe58,
+		400: #2af526,
+		500: #06d006,
+		600: #00b003,
+		700: #06850b,
+		800: #0b690f,
+		900: #0f5814,
+		950: #013206,
+	),
+	"fern": (
+		50: #f2fbf5,
+		100: #e1f7e8,
+		200: #c5edd1,
+		300: #98ddae,
+		400: #63c583,
+		500: #41b467,
+		600: #2e8b4c,
+		700: #276e3f,
+		800: #235835,
+		900: #1f482d,
+		950: #0c2716,
+	),
+	"keppel": (
+		50: #f0fdfc,
+		100: #ccfbf6,
+		200: #99f6ec,
+		300: #5eeadb,
+		400: #2dd4c2,
+		500: #14b8a6,
+		600: #0d9485,
+		700: #0f766b,
+		800: #115e56,
+		900: #134e48,
+		950: #042f2a,
+	),
+	"scooter": (
+		50: #ecfeff,
+		100: #cff9fe,
+		200: #a4f3fd,
+		300: #66e7fa,
+		400: #15cfef,
+		500: #04b4d6,
+		600: #0790b3,
+		700: #0d7391,
+		800: #145d76,
+		900: #154d64,
+		950: #073245,
+	),
+	"curiousblue": (
+		50: #f2f8fd,
+		100: #e3effb,
+		200: #c2dff5,
+		300: #8bc5ee,
+		400: #3fa0e0,
+		500: #278dd0,
+		600: #186fb1,
+		700: #15598f,
+		800: #154c77,
+		900: #174063,
+		950: #0f2942,
+	),
+	"mariner": (
+		50: #eff7ff,
+		100: #dcecfd,
+		200: #c0dffd,
+		300: #95ccfb,
+		400: #63aff7,
+		500: #3f8ff2,
+		600: #246ee6,
+		700: #215cd4,
+		800: #214bac,
+		900: #204288,
+		950: #182a53,
+	),
+	"indigo": (
+		50: #f4f2ff,
+		100: #eae8ff,
+		200: #d7d4ff,
+		300: #bbb1ff,
+		400: #9a85ff,
+		500: #6d44ff,
+		600: #6830f7,
+		700: #5a1ee3,
+		800: #4b18bf,
+		900: #3e169c,
+		950: #250b6a,
+	),
+	"violet": (
+		50: #f9f4ff,
+		100: #f1e5ff,
+		200: #e6d0ff,
+		300: #d3acff,
+		400: #b876ff,
+		500: #9d42ff,
+		600: #8c28ff,
+		700: #720ee2,
+		800: #6212b7,
+		900: #511093,
+		950: #35006f,
+	),
+	"fuchsia": (
+		50: #fcf4ff,
+		100: #f8e5ff,
+		200: #f3d0ff,
+		300: #e9acff,
+		400: #dd76ff,
+		500: #d042ff,
+		600: #c629ff,
+		700: #ab0ee2,
+		800: #8e12b7,
+		900: #741093,
+		950: #53006f,
+	),
+	"shockingpink": (
+		50: #fcf3fa,
+		100: #fbe8f8,
+		200: #f8d2f1,
+		300: #f3aee4,
+		400: #eb7bd1,
+		500: #dd40b3,
+		600: #ce349d,
+		700: #b22481,
+		800: #94206b,
+		900: #7b205a,
+		950: #4b0c34,
+	),
+	"brilliantrose": (
+		50: #fef1f8,
+		100: #fee5f2,
+		200: #ffcbe8,
+		300: #ffa1d3,
+		400: #ff56ab,
+		500: #fa3a95,
+		600: #ea1871,
+		700: #cc0a57,
+		800: #a80c48,
+		900: #8c0f3e,
+		950: #560121,
+	),
+	"torchred": (
+		50: #fff0f3,
+		100: #ffdde3,
+		200: #ffc0cc,
+		300: #ff94a8,
+		400: #ff5776,
+		500: #ff234b,
+		600: #ff1943,
+		700: #d70027,
+		800: #b10323,
+		900: #920a23,
+		950: #50000f,
+	),
 );
 
 // ? MIXIN LAND
@@ -32,17 +332,92 @@ $ost-colors: (
 	line-height: $line-height;
 }
 
-@mixin hover-util($class, $property, $value) {
-	.#{$class} {
-		#{$property}: #{$value};
-	}
-	.hover\@#{$class}:hover {
+// PSEUDO CLASSES
+@mixin pseudo-classes-util($pseudo, $class, $property, $value) {
+	.#{$class}-#{$pseudo}:#{#{$pseudo}} {
 		#{$property}: #{$value};
 	}
 }
 
+@mixin apply-pseudo-classes($class, $property, $value) {
+	@include pseudo-classes-util("hover", $class, $property, $value);
+	@include pseudo-classes-util("active", $class, $property, $value);
+	@include pseudo-classes-util("focus", $class, $property, $value);
+	@include pseudo-classes-util("disabled", $class, $property, $value);
+	@include pseudo-classes-util("enabled", $class, $property, $value);
+	@include pseudo-classes-util("checked", $class, $property, $value);
+	@include pseudo-classes-util("visited", $class, $property, $value);
+	@include pseudo-classes-util("link", $class, $property, $value);
+	@include pseudo-classes-util("first-child", $class, $property, $value);
+	@include pseudo-classes-util("last-child", $class, $property, $value);
+	@include pseudo-classes-util("empty", $class, $property, $value);
+	@include apply-pseudo-elements($class, $property, $value);
+}
+
+@mixin pseudo-elements-util($element, $class, $property, $value) {
+	.#{$class}-#{$element}::#{$element} {
+		#{$property}: #{$value};
+	}
+}
+
+@mixin apply-pseudo-elements($class, $property, $value) {
+	@include pseudo-elements-util("before", $class, $property, $value);
+	@include pseudo-elements-util("after", $class, $property, $value);
+	@include pseudo-elements-util("first-letter", $class, $property, $value);
+	@include pseudo-elements-util("first-line", $class, $property, $value);
+	@include pseudo-elements-util("selection", $class, $property, $value);
+	@include pseudo-elements-util("backdrop", $class, $property, $value);
+}
+
+// MEDIA @SCREEN
+@mixin min-breakpoint-util(
+	$breakpoint,
+	$breakpoint-value,
+	$class,
+	$property,
+	$value
+) {
+	@media (min-width: $breakpoint) {
+		.#{$class}-min-#{$breakpoint-value} {
+			#{$property}: #{$value};
+		}
+	}
+}
+
+@mixin max-breakpoint-util(
+	$breakpoint,
+	$breakpoint-value,
+	$class,
+	$property,
+	$value
+) {
+	@media (max-width: $breakpoint) {
+		.#{$class}-max-#{$breakpoint-value} {
+			#{$property}: #{$value};
+		}
+	}
+}
+
+@mixin apply-min-breakpoint($class, $property, $value) {
+	@include min-breakpoint-util(576px, "sm", $class, $property, $value);
+	@include min-breakpoint-util(768px, "md", $class, $property, $value);
+	@include min-breakpoint-util(992px, "xl", $class, $property, $value);
+	@include min-breakpoint-util(1200px, "2xl", $class, $property, $value);
+	@include min-breakpoint-util(1400px, "3xl", $class, $property, $value);
+	@include max-breakpoint-util(1600px, "4xl", $class, $property, $value);
+}
+
+@mixin apply-max-breakpoint($class, $property, $value) {
+	@include max-breakpoint-util(576px, "sm", $class, $property, $value);
+	@include max-breakpoint-util(768px, "md", $class, $property, $value);
+	@include max-breakpoint-util(992px, "xl", $class, $property, $value);
+	@include max-breakpoint-util(1200px, "2xl", $class, $property, $value);
+	@include max-breakpoint-util(1400px, "3xl", $class, $property, $value);
+	@include max-breakpoint-util(1600px, "4xl", $class, $property, $value);
+}
+
 :root {
-	--ost-default-family: #{$ost-default-family};
+	--oka-default-family: #{$oka-default-family};
 }
 
 // ? BASE STYLE
@@ -136,7 +511,7 @@ video {
 	background-color: initial;
 	font: inherit;
 	vertical-align: baseline;
-	font-family: var(--ost-default-family);
+	font-family: var(--oka-default-family);
 }
 /* HTML5 display-role reset for older browsers */
 article,
@@ -194,7 +569,16 @@ table {
 		transform: rotate(360deg);
 	}
 }
-@include hover-util("anim-rotate", "animation", "rotate 2s infinite linear");
+@include apply-pseudo-classes(
+	"anim-rotate",
+	"animation",
+	"rotate 2s infinite linear"
+);
+@include apply-pseudo-elements(
+	"anim-rotate",
+	"animation",
+	"rotate 2s infinite linear"
+);
 
 @keyframes scale-up {
 	0% {
@@ -207,7 +591,12 @@ table {
 		transform: scale(auto);
 	}
 }
-@include hover-util(
+@include apply-pseudo-classes(
+	"anim-scale-up",
+	"animation",
+	"scale-up 1.6s infinite cubic-bezier(0.48, 0.14, 0.44, 0.76)"
+);
+@include apply-pseudo-elements(
 	"anim-scale-up",
 	"animation",
 	"scale-up 1.6s infinite cubic-bezier(0.48, 0.14, 0.44, 0.76)"
@@ -230,10 +619,11 @@ table {
 		transform: rotate(0deg);
 	}
 }
-@include hover-util(
+@include apply-pseudo-classes("anim-swing", "animation", "swing 1.6s infinite");
+@include apply-pseudo-elements(
 	"anim-swing",
 	"animation",
-	"swing 1s infinite cubic-bezier(0.54, 0.15, 0.37, 0.87)"
+	"swing 1.6s infinite"
 );
 
 @keyframes scale-down {
@@ -247,10 +637,15 @@ table {
 		transform: scale(auto);
 	}
 }
-@include hover-util(
+@include apply-pseudo-classes(
 	"anim-scale-down",
 	"animation",
-	"scale-down 1.8s infinite cubic-bezier(0.48, 0.14, 0.44, 0.76)"
+	"scale-down 1.6s infinite cubic-bezier(0.48, 0.14, 0.44, 0.76)"
+);
+@include apply-pseudo-elements(
+	"anim-scale-down",
+	"animation",
+	"scale-down 1.6s infinite cubic-bezier(0.48, 0.14, 0.44, 0.76)"
 );
 
 @keyframes jumping {
@@ -264,10 +659,15 @@ table {
 		transform: translateY(0px);
 	}
 }
-@include hover-util(
+@include apply-pseudo-classes(
 	"anim-jumping",
 	"animation",
-	"jumping 1.4s infinite cubic-bezier(0.68, 0.34, 0.27, 0.93)"
+	"jumping 1.6s infinite cubic-bezier(0.48, 0.14, 0.44, 0.76)"
+);
+@include apply-pseudo-elements(
+	"anim-jumping",
+	"animation",
+	"jumping 1.6s infinite cubic-bezier(0.48, 0.14, 0.44, 0.76)"
 );
 
 @keyframes pulse {
@@ -281,7 +681,12 @@ table {
 		opacity: 1;
 	}
 }
-@include hover-util(
+@include apply-pseudo-classes(
+	"anim-pulse",
+	"animation",
+	"pulse 1.2s infinite cubic-bezier(0.52, 0, 0.55, 0.99)"
+);
+@include apply-pseudo-elements(
 	"anim-pulse",
 	"animation",
 	"pulse 1.2s infinite cubic-bezier(0.52, 0, 0.55, 0.99)"
@@ -297,7 +702,16 @@ table {
 		opacity: 1;
 	}
 }
-@include hover-util("anim-slide-in", "animation", "slide-in 0.5s ease-out");
+@include apply-pseudo-classes(
+	"anim-slide-in",
+	"animation",
+	"slide-in 0.5s ease-out"
+);
+@include apply-pseudo-elements(
+	"anim-slide-in",
+	"animation",
+	"slide-in 0.5s ease-out"
+);
 
 @keyframes slide-out {
 	0% {
@@ -309,7 +723,16 @@ table {
 		opacity: 0;
 	}
 }
-@include hover-util("anim-slide-out", "animation", "slide-out 0.5s ease-in");
+@include apply-pseudo-classes(
+	"anim-slide-out",
+	"animation",
+	"slide-out 0.5s ease-out"
+);
+@include apply-pseudo-elements(
+	"anim-slide-out",
+	"animation",
+	"slide-out 0.5s ease-out"
+);
 
 // ? CONTAINER
 .container {
@@ -341,211 +764,628 @@ table {
 	.p-#{$i} {
 		padding: #{calc($i * 0.25)}rem;
 	}
+	@include apply-pseudo-classes(
+		"p-#{$i}",
+		"padding",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-pseudo-elements(
+		"p-#{$i}",
+		"padding",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-min-breakpoint(
+		"p-#{$i}",
+		"padding",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-max-breakpoint(
+		"p-#{$i}",
+		"padding",
+		"#{calc($i * 0.25)}rem"
+	);
 	.pt-#{$i} {
 		padding-top: #{calc($i * 0.25)}rem;
 	}
+	@include apply-pseudo-classes(
+		"pt-#{$i}",
+		"padding-top",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-pseudo-elements(
+		"pt-#{$i}",
+		"padding-top",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-min-breakpoint(
+		"pt-#{$i}",
+		"padding-top",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-max-breakpoint(
+		"pt-#{$i}",
+		"padding-top",
+		"#{calc($i * 0.25)}rem"
+	);
 	.pl-#{$i} {
 		padding-left: #{calc($i * 0.25)}rem;
 	}
+	@include apply-pseudo-classes(
+		"pl-#{$i}",
+		"padding-left",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-pseudo-elements(
+		"pl-#{$i}",
+		"padding-left",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-min-breakpoint(
+		"pl-#{$i}",
+		"padding-left",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-max-breakpoint(
+		"pl-#{$i}",
+		"padding-left",
+		"#{calc($i * 0.25)}rem"
+	);
 	.pr-#{$i} {
 		padding-right: #{calc($i * 0.25)}rem;
 	}
+	@include apply-pseudo-classes(
+		"pr-#{$i}",
+		"padding-right",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-pseudo-elements(
+		"pr-#{$i}",
+		"padding-right",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-min-breakpoint(
+		"pr-#{$i}",
+		"padding-right",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-max-breakpoint(
+		"pr-#{$i}",
+		"padding-right",
+		"#{calc($i * 0.25)}rem"
+	);
 	.pb-#{$i} {
 		padding-bottom: #{calc($i * 0.25)}rem;
 	}
+	@include apply-pseudo-classes(
+		"pb-#{$i}",
+		"padding-bottom",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-pseudo-elements(
+		"pb-#{$i}",
+		"padding-bottom",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-min-breakpoint(
+		"pb-#{$i}",
+		"padding-bottom",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-max-breakpoint(
+		"pb-#{$i}",
+		"padding-bottom",
+		"#{calc($i * 0.25)}rem"
+	);
 	.py-#{$i} {
 		padding-top: #{calc($i * 0.25)}rem;
 		padding-bottom: #{calc($i * 0.25)}rem;
 	}
+	@include apply-pseudo-classes(
+		"py-#{$i}",
+		"padding-top",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-pseudo-classes(
+		"py-#{$i}",
+		"padding-bottom",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-pseudo-elements(
+		"py-#{$i}",
+		"padding-top",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-pseudo-elements(
+		"py-#{$i}",
+		"padding-bottom",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-min-breakpoint(
+		"py-#{$i}",
+		"padding-top",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-min-breakpoint(
+		"py-#{$i}",
+		"padding-bottom",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-max-breakpoint(
+		"py-#{$i}",
+		"padding-top",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-max-breakpoint(
+		"py-#{$i}",
+		"padding-bottom",
+		"#{calc($i * 0.25)}rem"
+	);
 	.px-#{$i} {
 		padding-right: #{calc($i * 0.25)}rem;
 		padding-left: #{calc($i * 0.25)}rem;
 	}
+	@include apply-pseudo-classes(
+		"px-#{$i}",
+		"padding-right",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-pseudo-classes(
+		"px-#{$i}",
+		"padding-left",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-pseudo-elements(
+		"px-#{$i}",
+		"padding-right",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-pseudo-elements(
+		"px-#{$i}",
+		"padding-left",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-min-breakpoint(
+		"px-#{$i}",
+		"padding-right",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-min-breakpoint(
+		"px-#{$i}",
+		"padding-left",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-max-breakpoint(
+		"px-#{$i}",
+		"padding-right",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-max-breakpoint(
+		"px-#{$i}",
+		"padding-left",
+		"#{calc($i * 0.25)}rem"
+	);
 
 	.m-#{$i} {
 		margin: #{calc($i * 0.25)}rem;
 	}
+	@include apply-pseudo-classes("m-#{$i}", "margin", "#{calc($i * 0.25)}rem");
+	@include apply-pseudo-elements(
+		"m-#{$i}",
+		"margin",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-min-breakpoint("m-#{$i}", "margin", "#{calc($i * 0.25)}rem");
+	@include apply-max-breakpoint("m-#{$i}", "margin", "#{calc($i * 0.25)}rem");
 	.mt-#{$i} {
 		margin-top: #{calc($i * 0.25)}rem;
 	}
+	@include apply-pseudo-classes(
+		"mt-#{$i}",
+		"margin-top",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-pseudo-elements(
+		"mt-#{$i}",
+		"margin-top",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-min-breakpoint(
+		"mt-#{$i}",
+		"margin-top",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-max-breakpoint(
+		"mt-#{$i}",
+		"margin-top",
+		"#{calc($i * 0.25)}rem"
+	);
 	.ml-#{$i} {
 		margin-left: #{calc($i * 0.25)}rem;
 	}
+	@include apply-pseudo-classes(
+		"ml-#{$i}",
+		"margin-left",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-pseudo-elements(
+		"ml-#{$i}",
+		"margin-left",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-min-breakpoint(
+		"ml-#{$i}",
+		"margin-left",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-max-breakpoint(
+		"ml-#{$i}",
+		"margin-left",
+		"#{calc($i * 0.25)}rem"
+	);
 	.mr-#{$i} {
 		margin-right: #{calc($i * 0.25)}rem;
 	}
+	@include apply-pseudo-classes(
+		"mr-#{$i}",
+		"margin-right",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-pseudo-elements(
+		"mr-#{$i}",
+		"margin-right",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-min-breakpoint(
+		"mr-#{$i}",
+		"margin-right",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-max-breakpoint(
+		"mr-#{$i}",
+		"margin-right",
+		"#{calc($i * 0.25)}rem"
+	);
 	.mb-#{$i} {
 		margin-bottom: #{calc($i * 0.25)}rem;
 	}
+	@include apply-pseudo-classes(
+		"mb-#{$i}",
+		"margin-bottom",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-pseudo-elements(
+		"mb-#{$i}",
+		"margin-bottom",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-min-breakpoint(
+		"mb-#{$i}",
+		"margin-bottom",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-max-breakpoint(
+		"mb-#{$i}",
+		"margin-bottom",
+		"#{calc($i * 0.25)}rem"
+	);
 	.my-#{$i} {
 		margin-top: #{calc($i * 0.25)}rem;
 		margin-bottom: #{calc($i * 0.25)}rem;
 	}
+	@include apply-pseudo-classes(
+		"my-#{$i}",
+		"margin-top",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-pseudo-classes(
+		"my-#{$i}",
+		"margin-bottom",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-pseudo-elements(
+		"my-#{$i}",
+		"margin-top",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-pseudo-elements(
+		"my-#{$i}",
+		"margin-bottom",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-min-breakpoint(
+		"my-#{$i}",
+		"margin-top",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-min-breakpoint(
+		"my-#{$i}",
+		"margin-bottom",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-max-breakpoint(
+		"my-#{$i}",
+		"margin-top",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-max-breakpoint(
+		"my-#{$i}",
+		"margin-bottom",
+		"#{calc($i * 0.25)}rem"
+	);
 	.mx-#{$i} {
 		margin-right: #{calc($i * 0.25)}rem;
 		margin-left: #{calc($i * 0.25)}rem;
 	}
-
-	.hover\@p-#{$i}:hover {
-		padding: #{calc($i * 0.25)}rem;
-	}
-	.hover\@pt-#{$i}:hover {
-		padding-top: #{calc($i * 0.25)}rem;
-	}
-	.hover\@pl-#{$i}:hover {
-		padding-left: #{calc($i * 0.25)}rem;
-	}
-	.hover\@pr-#{$i}:hover {
-		padding-right: #{calc($i * 0.25)}rem;
-	}
-	.hover\@pb-#{$i}:hover {
-		padding-bottom: #{calc($i * 0.25)}rem;
-	}
-	.hover\@py-#{$i}:hover {
-		padding-top: #{calc($i * 0.25)}rem;
-		padding-bottom: #{calc($i * 0.25)}rem;
-	}
-	.hover\@px-#{$i}:hover {
-		padding-right: #{calc($i * 0.25)}rem;
-		padding-left: #{calc($i * 0.25)}rem;
-	}
-
-	.hover\@m-#{$i}:hover {
-		margin: #{calc($i * 0.25)}rem;
-	}
-	.hover\@mt-#{$i}:hover {
-		margin-top: #{calc($i * 0.25)}rem;
-	}
-	.hover\@ml-#{$i}:hover {
-		margin-left: #{calc($i * 0.25)}rem;
-	}
-	.hover\@mr-#{$i}:hover {
-		margin-right: #{calc($i * 0.25)}rem;
-	}
-	.hover\@mb-#{$i}:hover {
-		margin-bottom: #{calc($i * 0.25)}rem;
-	}
-	.hover\@my-#{$i}:hover {
-		margin-top: #{calc($i * 0.25)}rem;
-		margin-bottom: #{calc($i * 0.25)}rem;
-	}
-	.hover\@mx-#{$i}:hover {
-		margin-right: #{calc($i * 0.25)}rem;
-		margin-left: #{calc($i * 0.25)}rem;
-	}
+	@include apply-pseudo-classes(
+		"mx-#{$i}",
+		"margin-right",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-pseudo-classes(
+		"mx-#{$i}",
+		"margin-left",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-pseudo-elements(
+		"mx-#{$i}",
+		"margin-right",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-pseudo-elements(
+		"mx-#{$i}",
+		"margin-left",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-min-breakpoint(
+		"mx-#{$i}",
+		"margin-right",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-min-breakpoint(
+		"mx-#{$i}",
+		"margin-left",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-max-breakpoint(
+		"mx-#{$i}",
+		"margin-right",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-max-breakpoint(
+		"mx-#{$i}",
+		"margin-left",
+		"#{calc($i * 0.25)}rem"
+	);
 }
 
 .p-auto {
 	padding: auto;
+	@include apply-pseudo-classes("p-auto", "padding", "auto");
+	@include apply-pseudo-elements("p-auto", "padding", "auto");
+	@include apply-min-breakpoint("p-auto", "padding", "auto");
+	@include apply-max-breakpoint("p-auto", "padding", "auto");
 }
 .pt-auto {
 	padding-top: auto;
+	@include apply-pseudo-classes("pt-auto", "padding-top", "auto");
+	@include apply-pseudo-elements("pt-auto", "padding-top", "auto");
+	@include apply-min-breakpoint("pt-auto", "padding-top", "auto");
+	@include apply-max-breakpoint("pt-auto", "padding-top", "auto");
 }
 .pl-auto {
 	padding-left: auto;
+	@include apply-pseudo-classes("pl-auto", "padding-left", "auto");
+	@include apply-pseudo-elements("pl-auto", "padding-left", "auto");
+	@include apply-min-breakpoint("pl-auto", "padding-left", "auto");
+	@include apply-max-breakpoint("pl-auto", "padding-left", "auto");
 }
 .pr-auto {
 	padding-right: auto;
+	@include apply-pseudo-classes("pr-auto", "padding-right", "auto");
+	@include apply-pseudo-elements("pr-auto", "padding-right", "auto");
+	@include apply-min-breakpoint("pr-auto", "padding-right", "auto");
+	@include apply-max-breakpoint("pr-auto", "padding-right", "auto");
 }
 .pb-auto {
 	padding-bottom: auto;
+	@include apply-pseudo-classes("pb-auto", "padding-bottom", "auto");
+	@include apply-pseudo-elements("pb-auto", "padding-bottom", "auto");
+	@include apply-min-breakpoint("pb-auto", "padding-bottom", "auto");
+	@include apply-max-breakpoint("pb-auto", "padding-bottom", "auto");
 }
 .py-auto {
 	padding-top: auto;
 	padding-bottom: auto;
+	@include apply-pseudo-classes("py-auto", "padding-top", "auto");
+	@include apply-pseudo-classes("py-auto", "padding-bottom", "auto");
+	@include apply-pseudo-elements("py-auto", "padding-top", "auto");
+	@include apply-pseudo-elements("py-auto", "padding-bottom", "auto");
+	@include apply-min-breakpoint("py-auto", "padding-top", "auto");
+	@include apply-min-breakpoint("py-auto", "padding-bottom", "auto");
+	@include apply-max-breakpoint("py-auto", "padding-top", "auto");
+	@include apply-max-breakpoint("py-auto", "padding-bottom", "auto");
 }
 .px-auto {
 	padding-right: auto;
 	padding-left: auto;
+	@include apply-pseudo-classes("px-auto", "padding-right", "auto");
+	@include apply-pseudo-classes("px-auto", "padding-left", "auto");
+	@include apply-pseudo-elements("px-auto", "padding-right", "auto");
+	@include apply-pseudo-elements("px-auto", "padding-left", "auto");
+	@include apply-min-breakpoint("px-auto", "padding-right", "auto");
+	@include apply-min-breakpoint("px-auto", "padding-left", "auto");
+	@include apply-max-breakpoint("px-auto", "padding-right", "auto");
+	@include apply-max-breakpoint("px-auto", "padding-left", "auto");
 }
 .m-auto {
 	margin: auto;
+	@include apply-pseudo-classes("m-auto", "margin", "auto");
+	@include apply-pseudo-elements("m-auto", "margin", "auto");
+	@include apply-min-breakpoint("m-auto", "margin", "auto");
+	@include apply-max-breakpoint("m-auto", "margin", "auto");
 }
 .mt-auto {
 	margin-top: auto;
+	@include apply-pseudo-classes("mt-auto", "margin-top", "auto");
+	@include apply-pseudo-elements("mt-auto", "margin-top", "auto");
+	@include apply-min-breakpoint("mt-auto", "margin-top", "auto");
+	@include apply-max-breakpoint("mt-auto", "margin-top", "auto");
 }
 .ml-auto {
 	margin-left: auto;
+	@include apply-pseudo-classes("ml-auto", "margin-left", "auto");
+	@include apply-pseudo-elements("ml-auto", "margin-left", "auto");
+	@include apply-min-breakpoint("ml-auto", "margin-left", "auto");
+	@include apply-max-breakpoint("ml-auto", "margin-left", "auto");
 }
 .mr-auto {
 	margin-right: auto;
+	@include apply-pseudo-classes("mr-auto", "margin-right", "auto");
+	@include apply-pseudo-elements("mr-auto", "margin-right", "auto");
+	@include apply-min-breakpoint("mr-auto", "margin-right", "auto");
+	@include apply-max-breakpoint("mr-auto", "margin-right", "auto");
 }
 .mb-auto {
 	margin-bottom: auto;
+	@include apply-pseudo-classes("mb-auto", "margin-bottom", "auto");
+	@include apply-pseudo-elements("mb-auto", "margin-bottom", "auto");
+	@include apply-min-breakpoint("mb-auto", "margin-bottom", "auto");
+	@include apply-max-breakpoint("mb-auto", "margin-bottom", "auto");
 }
 .my-auto {
 	margin-top: auto;
 	margin-bottom: auto;
+	@include apply-pseudo-classes("my-auto", "margin-top", "auto");
+	@include apply-pseudo-classes("my-auto", "margin-bottom", "auto");
+	@include apply-pseudo-elements("my-auto", "margin-top", "auto");
+	@include apply-pseudo-elements("my-auto", "margin-bottom", "auto");
+	@include apply-min-breakpoint("my-auto", "margin-top", "auto");
+	@include apply-min-breakpoint("my-auto", "margin-bottom", "auto");
+	@include apply-max-breakpoint("my-auto", "margin-top", "auto");
+	@include apply-max-breakpoint("my-auto", "margin-bottom", "auto");
 }
 .mx-auto {
 	margin-right: auto;
 	margin-left: auto;
-}
-
-.hover\@p-auto:hover {
-	padding: auto;
-}
-.hover\@pt-auto:hover {
-	padding-top: auto;
-}
-.hover\@pl-auto:hover {
-	padding-left: auto;
-}
-.hover\@pr-auto:hover {
-	padding-right: auto;
-}
-.hover\@pb-auto:hover {
-	padding-bottom: auto;
-}
-.hover\@py-auto:hover {
-	padding-top: auto;
-	padding-bottom: auto;
-}
-.hover\@px-auto:hover {
-	padding-right: auto;
-	padding-left: auto;
-}
-.hover\@m-auto:hover {
-	margin: auto;
-}
-.hover\@mt-auto:hover {
-	margin-top: auto;
-}
-.hover\@ml-auto:hover {
-	margin-left: auto;
-}
-.hover\@mr-auto:hover {
-	margin-right: auto;
-}
-.hover\@mb-auto:hover {
-	margin-bottom: auto;
-}
-.hover\@my-auto:hover {
-	margin-top: auto;
-	margin-bottom: auto;
-}
-.hover\@mx-auto:hover {
-	margin-right: auto;
-	margin-left: auto;
+	@include apply-pseudo-classes("mx-auto", "margin-right", "auto");
+	@include apply-pseudo-classes("mx-auto", "margin-left", "auto");
+	@include apply-pseudo-elements("mx-auto", "margin-right", "auto");
+	@include apply-pseudo-elements("mx-auto", "margin-left", "auto");
+	@include apply-min-breakpoint("mx-auto", "margin-right", "auto");
+	@include apply-min-breakpoint("mx-auto", "margin-left", "auto");
+	@include apply-max-breakpoint("mx-auto", "margin-right", "auto");
+	@include apply-max-breakpoint("mx-auto", "margin-left", "auto");
 }
 
 // ? BACKGROUND COLOR
-@each $color-name, $color-value in $ost-colors {
-	.bg-#{$color-name} {
-		background-color: #{$color-value};
-	}
-	.hover\@bg-#{$color-name}:hover {
-		background-color: #{$color-value};
+@each $color-name, $color-value in $oka-colors {
+	// Jika $color-value adalah map, lakukan looping lagi
+	@if meta.type-of($color-value) == "map" {
+		@each $shade, $shade-value in $color-value {
+			.bg-#{$color-name}-#{$shade} {
+				background-color: #{$shade-value};
+			}
+			@include apply-pseudo-classes(
+				"bg-#{$color-name}-#{$shade}",
+				"background-color",
+				"#{$shade-value}"
+			);
+			@include apply-pseudo-elements(
+				"bg-#{$color-name}-#{$shade}",
+				"background-color",
+				"#{$shade-value}"
+			);
+			@include apply-min-breakpoint(
+				"bg-#{$color-name}-#{$shade}",
+				"background-color",
+				"#{$shade-value}"
+			);
+			@include apply-max-breakpoint(
+				"bg-#{$color-name}-#{$shade}",
+				"background-color",
+				"#{$shade-value}"
+			);
+		}
+	} @else {
+		.bg-#{$color-name} {
+			background-color: #{$color-value};
+		}
+		@include apply-pseudo-classes(
+			"bg-#{$color-name}",
+			"background-color",
+			"#{$color-value}"
+		);
+		@include apply-pseudo-elements(
+			"bg-#{$color-name}",
+			"background-color",
+			"#{$color-value}"
+		);
+		@include apply-min-breakpoint(
+			"bg-#{$color-name}",
+			"background-color",
+			"#{$color-value}"
+		);
+		@include apply-max-breakpoint(
+			"bg-#{$color-name}",
+			"background-color",
+			"#{$color-value}"
+		);
 	}
 }
 
 // ? FONT COLOR
-@each $color-name, $color-value in $ost-colors {
-	.font-#{$color-name} {
-		color: #{$color-value};
-	}
-	.hover\@font-#{$color-name}:hover {
-		color: #{$color-value};
+@each $color-name, $color-value in $oka-colors {
+	// Jika $color-value adalah map, lakukan looping lagi
+	@if meta.type-of($color-value) == "map" {
+		@each $shade, $shade-value in $color-value {
+			.font-#{$color-name}-#{$shade} {
+				color: #{$shade-value};
+			}
+			@include apply-pseudo-classes(
+				"font-#{$color-name}-#{$shade}",
+				"color",
+				"#{$shade-value}"
+			);
+			@include apply-pseudo-elements(
+				"font-#{$color-name}-#{$shade}",
+				"color",
+				"#{$shade-value}"
+			);
+			@include apply-min-breakpoint(
+				"font-#{$color-name}-#{$shade}",
+				"color",
+				"#{$shade-value}"
+			);
+			@include apply-max-breakpoint(
+				"font-#{$color-name}-#{$shade}",
+				"color",
+				"#{$shade-value}"
+			);
+		}
+	} @else {
+		.font-#{$color-name} {
+			color: #{$color-value};
+		}
+		@include apply-pseudo-classes(
+			"font-#{$color-name}",
+			"color",
+			"#{$color-value}"
+		);
+		@include apply-pseudo-elements(
+			"font-#{$color-name}",
+			"color",
+			"#{$color-value}"
+		);
+		@include apply-min-breakpoint(
+			"font-#{$color-name}",
+			"color",
+			"#{$color-value}"
+		);
+		@include apply-max-breakpoint(
+			"font-#{$color-name}",
+			"color",
+			"#{$color-value}"
+		);
 	}
 }
 
@@ -567,9 +1407,26 @@ table {
 	.weight-#{$weight} {
 		font-weight: #{$weight-value};
 	}
-	.hover\@weight-#{$weight}:hover {
-		font-weight: #{$weight-value};
-	}
+	@include apply-pseudo-classes(
+		"weight-#{$weight}",
+		"font-weight",
+		"#{$weight-value}"
+	);
+	@include apply-pseudo-elements(
+		"weight-#{$weight}",
+		"font-weight",
+		"#{$weight-value}"
+	);
+	@include apply-min-breakpoint(
+		"weight-#{$weight}",
+		"font-weight",
+		"#{$weight-value}"
+	);
+	@include apply-max-breakpoint(
+		"weight-#{$weight}",
+		"font-weight",
+		"#{$weight-value}"
+	);
 }
 
 // ? FONT SIZE
@@ -619,19 +1476,55 @@ table {
 		)
 {
 	.font-#{$name} {
-		@include font(nth($values, 1), nth($values, 2));
+		@include font(list.nth($values, 1), list.nth($values, 2));
 	}
-	.hover\@font-#{$name}:hover {
-		@include font(nth($values, 1), nth($values, 2));
-	}
+	@include apply-pseudo-classes(
+		"font-#{$name}",
+		"font-size",
+		"#{list.nth($values, 1)}"
+	);
+	@include apply-pseudo-classes(
+		"font-#{$name}",
+		"line-height",
+		"#{list.nth($values, 2)}"
+	);
+	@include apply-pseudo-elements(
+		"font-#{$name}",
+		"font-size",
+		"#{list.nth($values, 1)}"
+	);
+	@include apply-pseudo-elements(
+		"font-#{$name}",
+		"line-height",
+		"#{list.nth($values, 2)}"
+	);
+	@include apply-min-breakpoint(
+		"font-#{$name}",
+		"font-size",
+		"#{list.nth($values, 1)}"
+	);
+	@include apply-min-breakpoint(
+		"font-#{$name}",
+		"line-height",
+		"#{list.nth($values, 2)}"
+	);
+	@include apply-max-breakpoint(
+		"font-#{$name}",
+		"font-size",
+		"#{list.nth($values, 1)}"
+	);
+	@include apply-max-breakpoint(
+		"font-#{$name}",
+		"line-height",
+		"#{list.nth($values, 2)}"
+	);
 }
 
 // ? FONT STYLE
 .italic {
 	font-style: italic;
-}
-.hover\@italic:hover {
-	font-style: italic;
+	@include apply-pseudo-classes("italic", "font-style", "italic");
+	@include apply-pseudo-elements("italic", "font-style", "italic");
 }
 
 // ? BORDER RADIUS
@@ -657,58 +1550,210 @@ table {
 	.radius-#{$radius} {
 		border-radius: #{$radius-value};
 	}
+	@include apply-pseudo-classes(
+		"radius-#{$radius}",
+		"border-radius",
+		"#{$radius-value}"
+	);
+	@include apply-pseudo-elements(
+		"radius-#{$radius}",
+		"border-radius",
+		"#{$radius-value}"
+	);
+	@include apply-min-breakpoint(
+		"radius-#{$radius}",
+		"border-radius",
+		"#{$radius-value}"
+	);
+	@include apply-max-breakpoint(
+		"radius-#{$radius}",
+		"border-radius",
+		"#{$radius-value}"
+	);
 	.radius-tr-#{$radius} {
 		border-top-right-radius: #{$radius-value};
 	}
+	@include apply-pseudo-classes(
+		"radius-tr-#{$radius}",
+		"border-top-right-radius",
+		"#{$radius-value}"
+	);
+	@include apply-pseudo-elements(
+		"radius-tr-#{$radius}",
+		"border-top-right-radius",
+		"#{$radius-value}"
+	);
+	@include apply-min-breakpoint(
+		"radius-tr-#{$radius}",
+		"border-top-right-radius",
+		"#{$radius-value}"
+	);
+	@include apply-max-breakpoint(
+		"radius-tr-#{$radius}",
+		"border-top-right-radius",
+		"#{$radius-value}"
+	);
 	.radius-es-#{$radius} {
 		border-end-start-radius: #{$radius-value};
 	}
+	@include apply-pseudo-classes(
+		"radius-es-#{$radius}",
+		"border-end-start-radius",
+		"#{$radius-value}"
+	);
+	@include apply-pseudo-elements(
+		"radius-es-#{$radius}",
+		"border-end-start-radius",
+		"#{$radius-value}"
+	);
+	@include apply-min-breakpoint(
+		"radius-es-#{$radius}",
+		"border-end-start-radius",
+		"#{$radius-value}"
+	);
+	@include apply-max-breakpoint(
+		"radius-es-#{$radius}",
+		"border-end-start-radius",
+		"#{$radius-value}"
+	);
 	.radius-se-#{$radius} {
 		border-start-end-radius: #{$radius-value};
 	}
+	@include apply-pseudo-classes(
+		"radius-se-#{$radius}",
+		"border-start-end-radius",
+		"#{$radius-value}"
+	);
+	@include apply-pseudo-elements(
+		"radius-se-#{$radius}",
+		"border-start-end-radius",
+		"#{$radius-value}"
+	);
+	@include apply-min-breakpoint(
+		"radius-se-#{$radius}",
+		"border-start-end-radius",
+		"#{$radius-value}"
+	);
+	@include apply-max-breakpoint(
+		"radius-se-#{$radius}",
+		"border-start-end-radius",
+		"#{$radius-value}"
+	);
 	.radius-bl-#{$radius} {
 		border-bottom-left-radius: #{$radius-value};
 	}
+	@include apply-pseudo-classes(
+		"radius-bl-#{$radius}",
+		"border-bottom-left-radius",
+		"#{$radius-value}"
+	);
+	@include apply-pseudo-elements(
+		"radius-bl-#{$radius}",
+		"border-bottom-left-radius",
+		"#{$radius-value}"
+	);
+	@include apply-min-breakpoint(
+		"radius-bl-#{$radius}",
+		"border-bottom-left-radius",
+		"#{$radius-value}"
+	);
+	@include apply-max-breakpoint(
+		"radius-bl-#{$radius}",
+		"border-bottom-left-radius",
+		"#{$radius-value}"
+	);
 	.radius-ss-#{$radius} {
 		border-start-start-radius: #{$radius-value};
 	}
+	@include apply-pseudo-classes(
+		"radius-ss-#{$radius}",
+		"border-start-start-radius",
+		"#{$radius-value}"
+	);
+	@include apply-pseudo-elements(
+		"radius-ss-#{$radius}",
+		"border-start-start-radius",
+		"#{$radius-value}"
+	);
+	@include apply-min-breakpoint(
+		"radius-ss-#{$radius}",
+		"border-start-start-radius",
+		"#{$radius-value}"
+	);
+	@include apply-max-breakpoint(
+		"radius-ss-#{$radius}",
+		"border-start-start-radius",
+		"#{$radius-value}"
+	);
 	.radius-br-#{$radius} {
 		border-bottom-right-radius: #{$radius-value};
 	}
+	@include apply-pseudo-classes(
+		"radius-br-#{$radius}",
+		"border-bottom-right-radius",
+		"#{$radius-value}"
+	);
+	@include apply-pseudo-elements(
+		"radius-br-#{$radius}",
+		"border-bottom-right-radius",
+		"#{$radius-value}"
+	);
+	@include apply-min-breakpoint(
+		"radius-br-#{$radius}",
+		"border-bottom-right-radius",
+		"#{$radius-value}"
+	);
+	@include apply-max-breakpoint(
+		"radius-br-#{$radius}",
+		"border-bottom-right-radius",
+		"#{$radius-value}"
+	);
 	.radius-ee-#{$radius} {
 		border-end-end-radius: #{$radius-value};
 	}
+	@include apply-pseudo-classes(
+		"radius-ee-#{$radius}",
+		"border-end-end-radius",
+		"#{$radius-value}"
+	);
+	@include apply-pseudo-elements(
+		"radius-ee-#{$radius}",
+		"border-end-end-radius",
+		"#{$radius-value}"
+	);
+	@include apply-min-breakpoint(
+		"radius-ee-#{$radius}",
+		"border-end-end-radius",
+		"#{$radius-value}"
+	);
+	@include apply-max-breakpoint(
+		"radius-ee-#{$radius}",
+		"border-end-end-radius",
+		"#{$radius-value}"
+	);
 	.radius-tl-#{$radius} {
 		border-top-left-radius: #{$radius-value};
 	}
-
-	.hover\@radius-#{$radius}:hover {
-		border-radius: #{$radius-value};
-	}
-	.hover\@radius-tr-#{$radius}:hover {
-		border-top-right-radius: #{$radius-value};
-	}
-	.hover\@radius-es-#{$radius}:hover {
-		border-end-start-radius: #{$radius-value};
-	}
-	.hover\@radius-se-#{$radius}:hover {
-		border-start-end-radius: #{$radius-value};
-	}
-	.hover\@radius-bl-#{$radius}:hover {
-		border-bottom-left-radius: #{$radius-value};
-	}
-	.hover\@radius-ss-#{$radius}:hover {
-		border-start-start-radius: #{$radius-value};
-	}
-	.hover\@radius-br-#{$radius}:hover {
-		border-bottom-right-radius: #{$radius-value};
-	}
-	.hover\@radius-ee-#{$radius}:hover {
-		border-end-end-radius: #{$radius-value};
-	}
-	.hover\@radius-tl-#{$radius}:hover {
-		border-top-left-radius: #{$radius-value};
-	}
+	@include apply-pseudo-classes(
+		"radius-tl-#{$radius}",
+		"border-top-left-radius",
+		"#{$radius-value}"
+	);
+	@include apply-pseudo-elements(
+		"radius-tl-#{$radius}",
+		"border-top-left-radius",
+		"#{$radius-value}"
+	);
+	@include apply-min-breakpoint(
+		"radius-tl-#{$radius}",
+		"border-top-left-radius",
+		"#{$radius-value}"
+	);
+	@include apply-max-breakpoint(
+		"radius-tl-#{$radius}",
+		"border-top-left-radius",
+		"#{$radius-value}"
+	);
 }
 
 // ? FONT FAMILY
@@ -725,19 +1770,37 @@ table {
 	.family-#{$family} {
 		font-family: #{$family-value};
 	}
-	.hover\@family-#{$family}:hover {
-		font-family: #{$family-value};
-	}
+	@include apply-pseudo-classes(
+		"family-#{$family}",
+		"font-family",
+		"#{$family-value}"
+	);
+	@include apply-pseudo-elements(
+		"family-#{$family}",
+		"font-family",
+		"#{$family-value}"
+	);
+	@include apply-min-breakpoint(
+		"family-#{$family}",
+		"font-family",
+		"#{$family-value}"
+	);
+	@include apply-max-breakpoint(
+		"family-#{$family}",
+		"font-family",
+		"#{$family-value}"
+	);
 }
 
 // ? Z INDEX
-@for $i from -25 through 25 {
+@for $i from -30 through 30 {
 	.z-#{$i} {
 		z-index: $i;
 	}
-	.hover\@z-#{$i}:hover {
-		z-index: $i;
-	}
+	@include apply-pseudo-classes("z-#{$i}", "z-index", "#{$i}");
+	@include apply-pseudo-elements("z-#{$i}", "z-index", "#{$i}");
+	@include apply-min-breakpoint("z-#{$i}", "z-index", "#{$i}");
+	@include apply-max-breakpoint("z-#{$i}", "z-index", "#{$i}");
 }
 
 // ? OVERFLOW
@@ -745,21 +1808,72 @@ table {
 	.overflow-#{$overflow} {
 		overflow: #{$overflow};
 	}
+	@include apply-pseudo-classes(
+		"overflow-#{$overflow}",
+		"overflow",
+		"#{$overflow}"
+	);
+	@include apply-pseudo-elements(
+		"overflow-#{$overflow}",
+		"overflow",
+		"#{$overflow}"
+	);
+	@include apply-min-breakpoint(
+		"overflow-#{$overflow}",
+		"overflow",
+		"#{$overflow}"
+	);
+	@include apply-max-breakpoint(
+		"overflow-#{$overflow}",
+		"overflow",
+		"#{$overflow}"
+	);
 	.overflow-x-#{$overflow} {
 		overflow-x: #{$overflow};
 	}
+	@include apply-pseudo-classes(
+		"overflow-x-#{$overflow}",
+		"overflow-x",
+		"#{$overflow}"
+	);
+	@include apply-pseudo-elements(
+		"overflow-x-#{$overflow}",
+		"overflow-x",
+		"#{$overflow}"
+	);
+	@include apply-min-breakpoint(
+		"overflow-x-#{$overflow}",
+		"overflow-x",
+		"#{$overflow}"
+	);
+	@include apply-max-breakpoint(
+		"overflow-x-#{$overflow}",
+		"overflow-x",
+		"#{$overflow}"
+	);
 	.overflow-y-#{$overflow} {
 		overflow-y: #{$overflow};
 	}
-	.hover\@overflow-#{$overflow}:hover {
-		overflow: #{$overflow};
-	}
-	.hover\@overflow-x-#{$overflow}:hover {
-		overflow-x: #{$overflow};
-	}
-	.hover\@overflow-y-#{$overflow}:hover {
-		overflow-y: #{$overflow};
-	}
+	@include apply-pseudo-classes(
+		"overflow-y-#{$overflow}",
+		"overflow-y",
+		"#{$overflow}"
+	);
+	@include apply-pseudo-elements(
+		"overflow-y-#{$overflow}",
+		"overflow-y",
+		"#{$overflow}"
+	);
+	@include apply-min-breakpoint(
+		"overflow-y-#{$overflow}",
+		"overflow-y",
+		"#{$overflow}"
+	);
+	@include apply-max-breakpoint(
+		"overflow-y-#{$overflow}",
+		"overflow-y",
+		"#{$overflow}"
+	);
 }
 
 // ? CURSOR
@@ -781,9 +1895,10 @@ table {
 	.cursor-#{$cursor} {
 		cursor: #{$cursor};
 	}
-	.hover\@cursor-#{$cursor}:hover {
-		cursor: #{$cursor};
-	}
+	@include apply-pseudo-classes("cursor-#{$cursor}", "cursor", "#{$cursor}");
+	@include apply-pseudo-elements("cursor-#{$cursor}", "cursor", "#{$cursor}");
+	@include apply-min-breakpoint("cursor-#{$cursor}", "cursor", "#{$cursor}");
+	@include apply-max-breakpoint("cursor-#{$cursor}", "cursor", "#{$cursor}");
 }
 
 // ? WIDTH & HEIGHT
@@ -791,15 +1906,21 @@ table {
 	.w-#{$i} {
 		width: #{calc($i * 0.25)}rem;
 	}
+	@include apply-pseudo-classes("w-#{$i}", "width", "#{calc($i * 0.25)}rem");
+	@include apply-pseudo-elements("w-#{$i}", "width", "#{calc($i * 0.25)}rem");
+	@include apply-min-breakpoint("w-#{$i}", "width", "#{calc($i * 0.25)}rem");
+	@include apply-max-breakpoint("w-#{$i}", "width", "#{calc($i * 0.25)}rem");
 	.h-#{$i} {
 		height: #{calc($i * 0.25)}rem;
 	}
-	.hover\@w-#{$i}:hover {
-		width: #{calc($i * 0.25)}rem;
-	}
-	.hover\@h-#{$i}:hover {
-		height: #{calc($i * 0.25)}rem;
-	}
+	@include apply-pseudo-classes("h-#{$i}", "height", "#{calc($i * 0.25)}rem");
+	@include apply-pseudo-elements(
+		"h-#{$i}",
+		"height",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-min-breakpoint("h-#{$i}", "height", "#{calc($i * 0.25)}rem");
+	@include apply-max-breakpoint("h-#{$i}", "height", "#{calc($i * 0.25)}rem");
 }
 
 @each $width,
@@ -815,9 +1936,10 @@ table {
 	.w-#{$width} {
 		width: #{$width-value};
 	}
-	.hover\@w-#{$width}:hover {
-		width: #{$width-value};
-	}
+	@include apply-pseudo-classes("w-#{$width}", "width", "#{$width-value}");
+	@include apply-pseudo-elements("w-#{$width}", "width", "#{$width-value}");
+	@include apply-min-breakpoint("w-#{$width}", "width", "#{$width-value}");
+	@include apply-max-breakpoint("w-#{$width}", "width", "#{$width-value}");
 }
 
 @each $height,
@@ -833,27 +1955,34 @@ table {
 	.h-#{$height} {
 		height: #{$height-value};
 	}
-	.hover\@h-#{$height}:hover {
-		height: #{$height-value};
-	}
+	@include apply-pseudo-classes("h-#{$height}", "height", "#{$height-value}");
+	@include apply-pseudo-elements(
+		"h-#{$height}",
+		"height",
+		"#{$height-value}"
+	);
+	@include apply-min-breakpoint("h-#{$height}", "height", "#{$height-value}");
+	@include apply-max-breakpoint("h-#{$height}", "height", "#{$height-value}");
 }
 
 @for $i from 1 through 100 {
 	.h-#{$i}\% {
 		height: #{$i + "%"};
 	}
-	.hover\@h-#{$i}\%:hover {
-		height: #{$i + "%"};
-	}
+	@include apply-pseudo-classes("h-#{$i}\%", "height", "#{$i}%");
+	@include apply-pseudo-elements("h-#{$i}\%", "height", "#{$i}%");
+	@include apply-min-breakpoint("h-#{$i}\%", "height", "#{$i}%");
+	@include apply-max-breakpoint("h-#{$i}\%", "height", "#{$i}%");
 }
 
 @for $i from 1 through 100 {
 	.w-#{$i}\% {
 		width: #{$i + "%"};
 	}
-	.hover\@w-#{$i}\%:hover {
-		width: #{$i + "%"};
-	}
+	@include apply-pseudo-classes("w-#{$i}\%", "width", "#{$i}%");
+	@include apply-pseudo-elements("w-#{$i}\%", "width", "#{$i}%");
+	@include apply-min-breakpoint("w-#{$i}\%", "width", "#{$i}%");
+	@include apply-max-breakpoint("w-#{$i}\%", "width", "#{$i}%");
 }
 
 // ? OPACITY
@@ -885,9 +2014,26 @@ table {
 	.opacity-#{$opacity} {
 		opacity: #{calc($opacity / 100)};
 	}
-	.hover\@opacity-#{$opacity}:hover {
-		opacity: #{calc($opacity / 100)};
-	}
+	@include apply-pseudo-classes(
+		"opacity-#{$opacity}",
+		"opacity",
+		"#{calc($opacity / 100)}"
+	);
+	@include apply-pseudo-elements(
+		"opacity-#{$opacity}",
+		"opacity",
+		"#{calc($opacity / 100)}"
+	);
+	@include apply-min-breakpoint(
+		"opacity-#{$opacity}",
+		"opacity",
+		"#{calc($opacity / 100)}"
+	);
+	@include apply-max-breakpoint(
+		"opacity-#{$opacity}",
+		"opacity",
+		"#{calc($opacity / 100)}"
+	);
 }
 
 // ? TEXT DECORATION
@@ -895,9 +2041,26 @@ table {
 	.decor-#{$decoration-value} {
 		text-decoration: #{$decoration-value};
 	}
-	.hover\@decor-#{$decoration-value}:hover {
-		text-decoration: #{$decoration-value};
-	}
+	@include apply-pseudo-classes(
+		"decor-#{$decoration-value}",
+		"text-decoration",
+		"#{$decoration-value}"
+	);
+	@include apply-pseudo-elements(
+		"decor-#{$decoration-value}",
+		"text-decoration",
+		"#{$decoration-value}"
+	);
+	@include apply-min-breakpoint(
+		"decor-#{$decoration-value}",
+		"text-decoration",
+		"#{$decoration-value}"
+	);
+	@include apply-max-breakpoint(
+		"decor-#{$decoration-value}",
+		"text-decoration",
+		"#{$decoration-value}"
+	);
 }
 
 // ? TEXT TRANSFORM
@@ -905,9 +2068,26 @@ table {
 	.transform-#{$transform-value} {
 		text-transform: #{$transform-value};
 	}
-	.hover\@transform-#{$transform-value}:hover {
-		text-transform: #{$transform-value};
-	}
+	@include apply-pseudo-classes(
+		"transform-#{$transform-value}",
+		"text-transform",
+		"#{$transform-value}"
+	);
+	@include apply-pseudo-elements(
+		"transform-#{$transform-value}",
+		"text-transform",
+		"#{$transform-value}"
+	);
+	@include apply-min-breakpoint(
+		"transform-#{$transform-value}",
+		"text-transform",
+		"#{$transform-value}"
+	);
+	@include apply-max-breakpoint(
+		"transform-#{$transform-value}",
+		"text-transform",
+		"#{$transform-value}"
+	);
 }
 
 // ? DISPLAY
@@ -923,12 +2103,29 @@ table {
 		"inline-grid"
 	)
 {
-	.display-#{$display-value} {
+	.dis-#{$display-value} {
 		display: #{$display-value};
 	}
-	.hover\@display-#{$display-value}:hover {
-		display: #{$display-value};
-	}
+	@include apply-pseudo-classes(
+		"dis-#{$display-value}",
+		"display",
+		"#{$display-value}"
+	);
+	@include apply-pseudo-elements(
+		"dis-#{$display-value}",
+		"display",
+		"#{$display-value}"
+	);
+	@include apply-min-breakpoint(
+		"dis-#{$display-value}",
+		"display",
+		"#{$display-value}"
+	);
+	@include apply-max-breakpoint(
+		"dis-#{$display-value}",
+		"display",
+		"#{$display-value}"
+	);
 }
 
 // ? POSITION
@@ -936,9 +2133,26 @@ table {
 	.pos-#{$position-value} {
 		position: #{$position-value};
 	}
-	.hover\@pos-#{$position-value}:hover {
-		position: #{$position-value};
-	}
+	@include apply-pseudo-classes(
+		"pos-#{$position-value}",
+		"position",
+		"#{$position-value}"
+	);
+	@include apply-pseudo-elements(
+		"pos-#{$position-value}",
+		"position",
+		"#{$position-value}"
+	);
+	@include apply-min-breakpoint(
+		"pos-#{$position-value}",
+		"position",
+		"#{$position-value}"
+	);
+	@include apply-max-breakpoint(
+		"pos-#{$position-value}",
+		"position",
+		"#{$position-value}"
+	);
 }
 
 // ? FLOAT
@@ -955,9 +2169,26 @@ table {
 	.float-#{$float} {
 		float: #{$float-value};
 	}
-	.hover\@float-#{$float}:hover {
-		float: #{$float-value};
-	}
+	@include apply-pseudo-classes(
+		"float-#{$float}",
+		"float",
+		"#{$float-value}"
+	);
+	@include apply-pseudo-elements(
+		"float-#{$float}",
+		"float",
+		"#{$float-value}"
+	);
+	@include apply-min-breakpoint(
+		"float-#{$float}",
+		"float",
+		"#{$float-value}"
+	);
+	@include apply-max-breakpoint(
+		"float-#{$float}",
+		"float",
+		"#{$float-value}"
+	);
 }
 
 // ? CLEAR
@@ -965,9 +2196,10 @@ table {
 	.clear-#{$clear} {
 		clear: #{$clear};
 	}
-	.hover\@clear-#{$clear}:hover {
-		clear: #{$clear};
-	}
+	@include apply-pseudo-classes("clear-#{$clear}", "clear", "#{$clear}");
+	@include apply-pseudo-elements("clear-#{$clear}", "clear", "#{$clear}");
+	@include apply-min-breakpoint("clear-#{$clear}", "clear", "#{$clear}");
+	@include apply-max-breakpoint("clear-#{$clear}", "clear", "#{$clear}");
 }
 
 // ? ALIGN ITEMS
@@ -985,9 +2217,26 @@ table {
 	.items-#{$items} {
 		align-items: #{$items-value};
 	}
-	.hover\@items-#{$items}:hover {
-		align-items: #{$items-value};
-	}
+	@include apply-pseudo-classes(
+		"items-#{$items}",
+		"align-items",
+		"#{$items-value}"
+	);
+	@include apply-pseudo-elements(
+		"items-#{$items}",
+		"align-items",
+		"#{$items-value}"
+	);
+	@include apply-min-breakpoint(
+		"items-#{$items}",
+		"align-items",
+		"#{$items-value}"
+	);
+	@include apply-max-breakpoint(
+		"items-#{$items}",
+		"align-items",
+		"#{$items-value}"
+	);
 }
 
 // ? ALIGN SELF
@@ -1005,9 +2254,26 @@ table {
 	.self-#{$self} {
 		align-self: #{$self-value};
 	}
-	.hover\@self-#{$self}:hover {
-		align-self: #{$self-value};
-	}
+	@include apply-pseudo-classes(
+		"self-#{$self}",
+		"align-self",
+		"#{$self-value}"
+	);
+	@include apply-pseudo-elements(
+		"self-#{$self}",
+		"align-self",
+		"#{$self-value}"
+	);
+	@include apply-min-breakpoint(
+		"self-#{$self}",
+		"align-self",
+		"#{$self-value}"
+	);
+	@include apply-max-breakpoint(
+		"self-#{$self}",
+		"align-self",
+		"#{$self-value}"
+	);
 }
 
 // ? JUSTIFY CONTENT
@@ -1025,9 +2291,26 @@ table {
 	.justify-#{$justify} {
 		justify-content: #{$justify-value};
 	}
-	.hover\@justify-#{$justify}:hover {
-		justify-content: #{$justify-value};
-	}
+	@include apply-pseudo-classes(
+		"justify-#{$justify}",
+		"justify-content",
+		"#{$justify-value}"
+	);
+	@include apply-pseudo-elements(
+		"justify-#{$justify}",
+		"justify-content",
+		"#{$justify-value}"
+	);
+	@include apply-min-breakpoint(
+		"justify-#{$justify}",
+		"justify-content",
+		"#{$justify-value}"
+	);
+	@include apply-max-breakpoint(
+		"justify-#{$justify}",
+		"justify-content",
+		"#{$justify-value}"
+	);
 }
 
 // ? TOP, BOTTOM, RIGHT, LEFT
@@ -1035,52 +2318,108 @@ table {
 	.top-#{$i} {
 		top: #{calc($i * 0.25)}rem;
 	}
+	@include apply-pseudo-classes("top-#{$i}", "top", "#{calc($i * 0.25)}rem");
+	@include apply-pseudo-elements("top-#{$i}", "top", "#{calc($i * 0.25)}rem");
+	@include apply-min-breakpoint("top-#{$i}", "top", "#{calc($i * 0.25)}rem");
+	@include apply-max-breakpoint("top-#{$i}", "top", "#{calc($i * 0.25)}rem");
 	.bottom-#{$i} {
 		bottom: #{calc($i * 0.25)}rem;
 	}
+	@include apply-pseudo-classes(
+		"bottom-#{$i}",
+		"bottom",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-pseudo-elements(
+		"bottom-#{$i}",
+		"bottom",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-min-breakpoint(
+		"bottom-#{$i}",
+		"bottom",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-max-breakpoint(
+		"bottom-#{$i}",
+		"bottom",
+		"#{calc($i * 0.25)}rem"
+	);
 	.right-#{$i} {
 		right: #{calc($i * 0.25)}rem;
 	}
+	@include apply-pseudo-classes(
+		"right-#{$i}",
+		"right",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-pseudo-elements(
+		"right-#{$i}",
+		"right",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-min-breakpoint(
+		"right-#{$i}",
+		"right",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-max-breakpoint(
+		"right-#{$i}",
+		"right",
+		"#{calc($i * 0.25)}rem"
+	);
 	.left-#{$i} {
 		left: #{calc($i * 0.25)}rem;
 	}
-	.hover\@top-#{$i}:hover {
-		top: #{calc($i * 0.25)}rem;
-	}
-	.hover\@bottom-#{$i}:hover {
-		bottom: #{calc($i * 0.25)}rem;
-	}
-	.hover\@right-#{$i}:hover {
-		right: #{calc($i * 0.25)}rem;
-	}
-	.hover\@left-#{$i}:hover {
-		left: #{calc($i * 0.25)}rem;
-	}
+	@include apply-pseudo-classes(
+		"left-#{$i}",
+		"left",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-pseudo-elements(
+		"left-#{$i}",
+		"left",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-min-breakpoint(
+		"left-#{$i}",
+		"left",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-max-breakpoint(
+		"left-#{$i}",
+		"left",
+		"#{calc($i * 0.25)}rem"
+	);
 }
 
 .top-full {
 	top: 100%;
+	@include apply-pseudo-classes("top-full", "top", "100%");
+	@include apply-pseudo-elements("top-full", "top", "100%");
+	@include apply-min-breakpoint("top-full", "top", "100%");
+	@include apply-max-breakpoint("top-full", "top", "100%");
 }
 .bottom-full {
 	bottom: 100%;
+	@include apply-pseudo-classes("bottom-full", "bottom", "100%");
+	@include apply-pseudo-elements("bottom-full", "bottom", "100%");
+	@include apply-min-breakpoint("bottom-full", "bottom", "100%");
+	@include apply-max-breakpoint("bottom-full", "bottom", "100%");
 }
 .right-full {
 	right: 100%;
+	@include apply-pseudo-classes("right-full", "right", "100%");
+	@include apply-pseudo-elements("right-full", "right", "100%");
+	@include apply-min-breakpoint("right-full", "right", "100%");
+	@include apply-max-breakpoint("right-full", "right", "100%");
 }
 .left-full {
 	left: 100%;
-}
-.hover\@top-full:hover {
-	top: 100%;
-}
-.hover\@bottom-full:hover {
-	bottom: 100%;
-}
-.hover\@right-full:hover {
-	right: 100%;
-}
-.hover\@left-full:hover {
-	left: 100%;
+	@include apply-pseudo-classes("left-full", "left", "100%");
+	@include apply-pseudo-elements("left-full", "left", "100%");
+	@include apply-min-breakpoint("left-full", "left", "100%");
+	@include apply-max-breakpoint("left-full", "left", "100%");
 }
 
 // ? TEXT ALIGN
@@ -1088,9 +2427,10 @@ table {
 	.text-#{$align} {
 		text-align: #{$align};
 	}
-	.hover\@text-#{$align}:hover {
-		text-align: #{$align};
-	}
+	@include apply-pseudo-classes("text-#{$align}", "text-align", "#{$align}");
+	@include apply-pseudo-elements("text-#{$align}", "text-align", "#{$align}");
+	@include apply-min-breakpoint("text-#{$align}", "text-align", "#{$align}");
+	@include apply-max-breakpoint("text-#{$align}", "text-align", "#{$align}");
 }
 
 // ? SHADOW
@@ -1107,9 +2447,26 @@ table {
 	.shadow-#{$shadow} {
 		box-shadow: #{$shadow-value};
 	}
-	.hover\@shadow-#{$shadow}:hover {
-		box-shadow: #{$shadow-value};
-	}
+	@include apply-pseudo-classes(
+		"shadow-#{$shadow}",
+		"box-shadow",
+		"#{$shadow-value}"
+	);
+	@include apply-pseudo-elements(
+		"shadow-#{$shadow}",
+		"box-shadow",
+		"#{$shadow-value}"
+	);
+	@include apply-min-breakpoint(
+		"shadow-#{$shadow}",
+		"box-shadow",
+		"#{$shadow-value}"
+	);
+	@include apply-max-breakpoint(
+		"shadow-#{$shadow}",
+		"box-shadow",
+		"#{$shadow-value}"
+	);
 }
 
 // ? ROTATE TRANSFORM
@@ -1117,9 +2474,26 @@ table {
 	.rotate-#{$i} {
 		transform: rotate(#{$i}deg);
 	}
-	.hover\@rotate-#{$i}:hover {
-		transform: rotate(#{$i}deg);
-	}
+	@include apply-pseudo-classes(
+		"rotate-#{$i}",
+		"transform",
+		"rotate(#{$i}deg)"
+	);
+	@include apply-pseudo-elements(
+		"rotate-#{$i}",
+		"transform",
+		"rotate(#{$i}deg)"
+	);
+	@include apply-min-breakpoint(
+		"rotate-#{$i}",
+		"transform",
+		"rotate(#{$i}deg)"
+	);
+	@include apply-max-breakpoint(
+		"rotate-#{$i}",
+		"transform",
+		"rotate(#{$i}deg)"
+	);
 }
 
 // ? SCALE TRANSFORM
@@ -1127,25 +2501,76 @@ table {
 	.scale-#{$i} {
 		transform: scale(#{calc($i/ 100)});
 	}
-	.hover\@scale-#{$i}:hover {
-		transform: scale(#{calc($i/ 100)});
-	}
+	@include apply-pseudo-classes(
+		"scale-#{$i}",
+		"transform",
+		"scale(#{calc($i/ 100)})"
+	);
+	@include apply-pseudo-elements(
+		"scale-#{$i}",
+		"transform",
+		"scale(#{calc($i/ 100)})"
+	);
+	@include apply-min-breakpoint(
+		"scale-#{$i}",
+		"transform",
+		"scale(#{calc($i/ 100)})"
+	);
+	@include apply-max-breakpoint(
+		"scale-#{$i}",
+		"transform",
+		"scale(#{calc($i/ 100)})"
+	);
 }
 
 // ? TRANSLATE TRANSFORM
 @for $i from -100 through 100 {
 	.translate-x-#{$i} {
-		transform: translateX(#{$i}rem);
+		transform: translateX(#{calc($i * 0.25)}rem);
 	}
+	@include apply-pseudo-classes(
+		"translate-x-#{$i}",
+		"transform",
+		"translateX(#{calc($i * 0.25)}rem)"
+	);
+	@include apply-pseudo-elements(
+		"translate-x-#{$i}",
+		"transform",
+		"translateX(#{calc($i * 0.25)}rem)"
+	);
+	@include apply-min-breakpoint(
+		"translate-x-#{$i}",
+		"transform",
+		"translateX(#{calc($i * 0.25)}rem)"
+	);
+	@include apply-max-breakpoint(
+		"translate-x-#{$i}",
+		"transform",
+		"translateX(#{calc($i * 0.25)}rem)"
+	);
 	.translate-y-#{$i} {
-		transform: translateY(#{$i}rem);
+		transform: translateY(#{calc($i * 0.25)}rem);
 	}
-	.hover\@translate-x-#{$i}:hover {
-		transform: translateX(#{$i}rem);
-	}
-	.hover\@translate-y-#{$i}:hover {
-		transform: translateY(#{$i}rem);
-	}
+	@include apply-pseudo-classes(
+		"translate-y-#{$i}",
+		"transform",
+		"translateY(#{calc($i * 0.25)}rem)"
+	);
+	@include apply-pseudo-elements(
+		"translate-y-#{$i}",
+		"transform",
+		"translateY(#{calc($i * 0.25)}rem)"
+	);
+	@include apply-min-breakpoint(
+		"translate-y-#{$i}",
+		"transform",
+		"translateY(#{calc($i * 0.25)}rem)"
+	);
+	@include apply-max-breakpoint(
+		"translate-y-#{$i}",
+		"transform",
+		"translateY(#{calc($i * 0.25)}rem)"
+	);
 }
 
 // ? SKEW TRANSFORM
@@ -1153,98 +2578,243 @@ table {
 	.skew-x-#{$i} {
 		transform: skewX(#{$i}deg);
 	}
+	@include apply-pseudo-classes(
+		"skew-x-#{$i}",
+		"transform",
+		"skewX(#{$i}deg)"
+	);
+	@include apply-pseudo-elements(
+		"skew-x-#{$i}",
+		"transform",
+		"skewX(#{$i}deg)"
+	);
+	@include apply-min-breakpoint(
+		"skew-x-#{$i}",
+		"transform",
+		"skewX(#{$i}deg)"
+	);
+	@include apply-max-breakpoint(
+		"skew-x-#{$i}",
+		"transform",
+		"skewX(#{$i}deg)"
+	);
 	.skew-y-#{$i} {
 		transform: skewY(#{$i}deg);
 	}
-	.hover\@skew-x-#{$i}:hover {
-		transform: skewX(#{$i}deg);
+	@include apply-pseudo-classes(
+		"skew-y-#{$i}",
+		"transform",
+		"skewY(#{$i}deg)"
+	);
+	@include apply-pseudo-elements(
+		"skew-y-#{$i}",
+		"transform",
+		"skewY(#{$i}deg)"
+	);
+	@include apply-min-breakpoint(
+		"skew-y-#{$i}",
+		"transform",
+		"skewY(#{$i}deg)"
+	);
+	@include apply-max-breakpoint(
+		"skew-y-#{$i}",
+		"transform",
+		"skewY(#{$i}deg)"
+	);
+}
+
+// ? FLEX BASIS
+@for $i from 0 through 100 {
+	.flex-basis-#{$i} {
+		flex-basis: #{calc($i * 0.25)}rem;
 	}
-	.hover\@skew-y-#{$i}:hover {
-		transform: skewY(#{$i}deg);
-	}
+	@include apply-pseudo-classes(
+		"flex-basis-#{$i}",
+		"flex-basis",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-pseudo-elements(
+		"flex-basis-#{$i}",
+		"flex-basis",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-min-breakpoint(
+		"flex-basis-#{$i}",
+		"flex-basis",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-max-breakpoint(
+		"flex-basis-#{$i}",
+		"flex-basis",
+		"#{calc($i * 0.25)}rem"
+	);
 }
 
 // ? FLEX DIRECTON
 @each $direction in ("column", "column-reverse", "row", "row-reverse") {
-	.flex-#{$direction} {
+	.f-direct-#{$direction} {
 		flex-direction: #{$direction};
 	}
-	.hover\@flex-#{$direction}:hover {
-		flex-direction: #{$direction};
-	}
+	@include apply-pseudo-classes(
+		"f-direct-#{$direction}",
+		"flex-direction",
+		"#{$direction}"
+	);
+	@include apply-pseudo-elements(
+		"f-direct-#{$direction}",
+		"flex-direction",
+		"#{$direction}"
+	);
+	@include apply-min-breakpoint(
+		"f-direct-#{$direction}",
+		"flex-direction",
+		"#{$direction}"
+	);
+	@include apply-max-breakpoint(
+		"f-direct-#{$direction}",
+		"flex-direction",
+		"#{$direction}"
+	);
 }
 
 // ? FLEX WRAP
 @each $wrap in ("nowrap", "wrap", "wrap-reverse") {
-	.flex-#{$wrap} {
+	.f-#{$wrap} {
 		flex-wrap: #{$wrap};
 	}
-	.hover\@flex-#{$wrap}:hover {
-		flex-wrap: #{$wrap};
-	}
+	@include apply-pseudo-classes("f-#{$wrap}", "flex-wrap", "#{$wrap}");
+	@include apply-pseudo-elements("f-#{$wrap}", "flex-wrap", "#{$wrap}");
+	@include apply-min-breakpoint("f-#{$wrap}", "flex-wrap", "#{$wrap}");
+	@include apply-max-breakpoint("f-#{$wrap}", "flex-wrap", "#{$wrap}");
 }
 
 // ? ORDER
-@for $i from -25 through 25 {
+@for $i from -30 through 30 {
 	.order-#{$i} {
 		order: #{$i};
 	}
-	.hover\@order-#{$i}:hover {
-		order: #{$i};
-	}
+	@include apply-pseudo-classes("order-#{$i}", "order", "#{$i}");
+	@include apply-pseudo-elements("order-#{$i}", "order", "#{$i}");
+	@include apply-min-breakpoint("order-#{$i}", "order", "#{$i}");
+	@include apply-max-breakpoint("order-#{$i}", "order", "#{$i}");
 }
 
-.order-last {
-	order: 9999;
-}
-.order-first {
-	order: -9999;
-}
-.hover\@order-last:hover {
-	order: 9999;
-}
-.hover\@order-first:hover {
-	order: -9999;
+@each $order, $order-value in ("first": 9999, "last": -9999) {
+	.order-#{$order} {
+		order: #{$order-value};
+	}
+	@include apply-pseudo-classes(
+		"order-#{$order}",
+		"order",
+		"#{$order-value}"
+	);
+	@include apply-pseudo-elements(
+		"order-#{$order}",
+		"order",
+		"#{$order-value}"
+	);
+	@include apply-min-breakpoint(
+		"order-#{$order}",
+		"order",
+		"#{$order-value}"
+	);
+	@include apply-max-breakpoint(
+		"order-#{$order}",
+		"order",
+		"#{$order-value}"
+	);
 }
 
 // ? GRID TEMPLATE COLUMNS
 @for $i from 1 through 12 {
-	.grid-cols-#{$i} {
+	.cols-#{$i} {
 		grid-template-columns: repeat(#{$i}, minmax(0, 1fr));
 	}
-	.hover\@grid-cols-#{$i}:hover {
-		grid-template-columns: repeat(#{$i}, minmax(0, 1fr));
-	}
+	@include apply-pseudo-classes(
+		"cols-#{$i}",
+		"grid-template-columns",
+		"repeat(#{$i}, minmax(0, 1fr))"
+	);
+	@include apply-pseudo-elements(
+		"cols-#{$i}",
+		"grid-template-columns",
+		"repeat(#{$i}, minmax(0, 1fr))"
+	);
+	@include apply-min-breakpoint(
+		"cols-#{$i}",
+		"grid-template-columns",
+		"repeat(#{$i}, minmax(0, 1fr))"
+	);
+	@include apply-max-breakpoint(
+		"cols-#{$i}",
+		"grid-template-columns",
+		"repeat(#{$i}, minmax(0, 1fr))"
+	);
 }
 
 // ? GRID TEMPLATE ROWS
 @for $i from 1 through 12 {
-	.grid-rows-#{$i} {
+	.rows-#{$i} {
 		grid-template-rows: repeat(#{$i}, minmax(0, 1fr));
 	}
-	.hover\@grid-rows-#{$i}:hover {
-		grid-template-rows: repeat(#{$i}, minmax(0, 1fr));
-	}
+	@include apply-pseudo-classes(
+		"rows-#{$i}",
+		"grid-template-rows",
+		"repeat(#{$i}, minmax(0, 1fr))"
+	);
+	@include apply-pseudo-elements(
+		"rows-#{$i}",
+		"grid-template-rows",
+		"repeat(#{$i}, minmax(0, 1fr))"
+	);
+	@include apply-min-breakpoint(
+		"rows-#{$i}",
+		"grid-template-rows",
+		"repeat(#{$i}, minmax(0, 1fr))"
+	);
+	@include apply-max-breakpoint(
+		"rows-#{$i}",
+		"grid-template-rows",
+		"repeat(#{$i}, minmax(0, 1fr))"
+	);
 }
 
 // ? GRID COLUMN SPAN
 @for $i from 1 through 12 {
 	.col-span-#{$i} {
-		grid-column: span #{$i} / span #{$i};
+		grid-column: span #{$i};
 	}
-	.hover\@col-span-#{$i}:hover {
-		grid-column: span #{$i} / span #{$i};
-	}
+	@include apply-pseudo-classes(
+		"col-span-#{$i}",
+		"grid-column",
+		"span #{$i}"
+	);
+	@include apply-pseudo-elements(
+		"col-span-#{$i}",
+		"grid-column",
+		"span #{$i}"
+	);
+	@include apply-min-breakpoint(
+		"col-span-#{$i}",
+		"grid-column",
+		"span #{$i}"
+	);
+	@include apply-max-breakpoint(
+		"col-span-#{$i}",
+		"grid-column",
+		"span #{$i}"
+	);
 }
 
 // ? GRID ROW SPAN
 @for $i from 1 through 12 {
 	.row-span-#{$i} {
-		grid-row: span #{$i} / span #{$i};
+		grid-row: span #{$i};
 	}
-	.hover\@row-span-#{$i}:hover {
-		grid-row: span #{$i} / span #{$i};
-	}
+	@include apply-pseudo-classes("row-span-#{$i}", "grid-row", "span #{$i}");
+	@include apply-pseudo-elements("row-span-#{$i}", "grid-row", "span #{$i}");
+	@include apply-min-breakpoint("row-span-#{$i}", "grid-row", "span #{$i}");
+	@include apply-max-breakpoint("row-span-#{$i}", "grid-row", "span #{$i}");
 }
 
 // ? GRID AUTO COLUMNS
@@ -1252,9 +2822,26 @@ table {
 	.auto-cols-#{$i} {
 		grid-auto-columns: minmax(0, #{$i}fr);
 	}
-	.hover\@auto-cols-#{$i}:hover {
-		grid-auto-columns: minmax(0, #{$i}fr);
-	}
+	@include apply-pseudo-classes(
+		"auto-cols-#{$i}",
+		"grid-auto-columns",
+		"minmax(0, #{$i}fr)"
+	);
+	@include apply-pseudo-elements(
+		"auto-cols-#{$i}",
+		"grid-auto-columns",
+		"minmax(0, #{$i}fr)"
+	);
+	@include apply-min-breakpoint(
+		"auto-cols-#{$i}",
+		"grid-auto-columns",
+		"minmax(0, #{$i}fr)"
+	);
+	@include apply-max-breakpoint(
+		"auto-cols-#{$i}",
+		"grid-auto-columns",
+		"minmax(0, #{$i}fr)"
+	);
 }
 
 // ? GRID AUTO ROWS
@@ -1262,29 +2849,37 @@ table {
 	.auto-rows-#{$i} {
 		grid-auto-rows: minmax(0, #{$i}fr);
 	}
-	.hover\@auto-rows-#{$i}:hover {
-		grid-auto-rows: minmax(0, #{$i}fr);
-	}
-}
-
-// ? GRID TEMPLATE AREAS
-@each $area in ("header", "main", "sidebar", "footer") {
-	.grid-area-#{$area} {
-		grid-area: #{$area};
-	}
-	.hover\@grid-area-#{$area}:hover {
-		grid-area: #{$area};
-	}
+	@include apply-pseudo-classes(
+		"auto-rows-#{$i}",
+		"grid-auto-rows",
+		"minmax(0, #{$i}fr)"
+	);
+	@include apply-pseudo-elements(
+		"auto-rows-#{$i}",
+		"grid-auto-rows",
+		"minmax(0, #{$i}fr)"
+	);
+	@include apply-min-breakpoint(
+		"auto-rows-#{$i}",
+		"grid-auto-rows",
+		"minmax(0, #{$i}fr)"
+	);
+	@include apply-max-breakpoint(
+		"auto-rows-#{$i}",
+		"grid-auto-rows",
+		"minmax(0, #{$i}fr)"
+	);
 }
 
 // ? GRID AUTO FLOW
 @each $flow in ("flow-row", "flow-col", "flow-row-dense", "flow-col-dense") {
-	.grid-flow-#{$flow} {
+	.g-#{$flow} {
 		grid-auto-flow: #{$flow};
 	}
-	.hover\@grid-flow-#{$flow}:hover {
-		grid-auto-flow: #{$flow};
-	}
+	@include apply-pseudo-classes("g-#{$flow}", "grid-auto-flow", "#{$flow}");
+	@include apply-pseudo-elements("g-#{$flow}", "grid-auto-flow", "#{$flow}");
+	@include apply-min-breakpoint("g-#{$flow}", "grid-auto-flow", "#{$flow}");
+	@include apply-max-breakpoint("g-#{$flow}", "grid-auto-flow", "#{$flow}");
 }
 
 // ? GAP
@@ -1292,27 +2887,62 @@ table {
 	.gap-#{$i} {
 		gap: #{calc($i * 0.25)}rem;
 	}
-	.hover\@gap-#{$i}:hover {
-		gap: #{calc($i * 0.25)}rem;
-	}
+	@include apply-pseudo-classes("gap-#{$i}", "gap", "#{calc($i * 0.25)}rem");
+	@include apply-pseudo-elements("gap-#{$i}", "gap", "#{calc($i * 0.25)}rem");
+	@include apply-min-breakpoint("gap-#{$i}", "gap", "#{calc($i * 0.25)}rem");
+	@include apply-max-breakpoint("gap-#{$i}", "gap", "#{calc($i * 0.25)}rem");
 }
 
 @for $i from -100 through 100 {
 	.gap-x-#{$i} {
 		column-gap: #{calc($i * 0.25)}rem;
 	}
-	.hover\@gap-x-#{$i}:hover {
-		column-gap: #{calc($i * 0.25)}rem;
-	}
+	@include apply-pseudo-classes(
+		"gap-x-#{$i}",
+		"column-gap",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-pseudo-elements(
+		"gap-x-#{$i}",
+		"column-gap",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-min-breakpoint(
+		"gap-x-#{$i}",
+		"column-gap",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-max-breakpoint(
+		"gap-x-#{$i}",
+		"column-gap",
+		"#{calc($i * 0.25)}rem"
+	);
 }
 
 @for $i from -100 through 100 {
 	.gap-y-#{$i} {
 		row-gap: #{calc($i * 0.25)}rem;
 	}
-	.hover\@gap-y-#{$i}:hover {
-		row-gap: #{calc($i * 0.25)}rem;
-	}
+	@include apply-pseudo-classes(
+		"gap-y-#{$i}",
+		"row-gap",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-pseudo-elements(
+		"gap-y-#{$i}",
+		"row-gap",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-min-breakpoint(
+		"gap-y-#{$i}",
+		"row-gap",
+		"#{calc($i * 0.25)}rem"
+	);
+	@include apply-max-breakpoint(
+		"gap-y-#{$i}",
+		"row-gap",
+		"#{calc($i * 0.25)}rem"
+	);
 }
 
 // ? ALIGN CONTENT
@@ -1322,9 +2952,26 @@ table {
 	.align-content-#{$content} {
 		align-content: #{$content};
 	}
-	.hover\@align-content-#{$content}:hover {
-		align-content: #{$content};
-	}
+	@include apply-pseudo-classes(
+		"align-content-#{$content}",
+		"align-content",
+		"#{$content}"
+	);
+	@include apply-pseudo-elements(
+		"align-content-#{$content}",
+		"align-content",
+		"#{$content}"
+	);
+	@include apply-min-breakpoint(
+		"align-content-#{$content}",
+		"align-content",
+		"#{$content}"
+	);
+	@include apply-max-breakpoint(
+		"align-content-#{$content}",
+		"align-content",
+		"#{$content}"
+	);
 }
 
 // ? TRANSITION
@@ -1340,9 +2987,26 @@ table {
 	.timing-#{$transition} {
 		transition-timing-function: #{$transition-value};
 	}
-	.hover\@timing-#{$transition}:hover {
-		transition-timing-function: #{$transition-value};
-	}
+	@include apply-pseudo-classes(
+		"timing-#{$transition}",
+		"transition-timing-function",
+		"#{$transition-value}"
+	);
+	@include apply-pseudo-elements(
+		"timing-#{$transition}",
+		"transition-timing-function",
+		"#{$transition-value}"
+	);
+	@include apply-min-breakpoint(
+		"timing-#{$transition}",
+		"transition-timing-function",
+		"#{$transition-value}"
+	);
+	@include apply-max-breakpoint(
+		"timing-#{$transition}",
+		"transition-timing-function",
+		"#{$transition-value}"
+	);
 }
 
 @each $time
@@ -1372,9 +3036,26 @@ table {
 	.duration-#{$time} {
 		transition-duration: #{calc($time / 1000)}s;
 	}
-	.hover\@duration-#{$time}:hover {
-		transition-duration: #{calc($time / 1000)}s;
-	}
+	@include apply-pseudo-classes(
+		"duration-#{$time}",
+		"transition-duration",
+		"#{calc($time / 1000)}s"
+	);
+	@include apply-pseudo-elements(
+		"duration-#{$time}",
+		"transition-duration",
+		"#{calc($time / 1000)}s"
+	);
+	@include apply-min-breakpoint(
+		"duration-#{$time}",
+		"transition-duration",
+		"#{calc($time / 1000)}s"
+	);
+	@include apply-max-breakpoint(
+		"duration-#{$time}",
+		"transition-duration",
+		"#{calc($time / 1000)}s"
+	);
 }
 
 @each $time
@@ -1404,27 +3085,107 @@ table {
 	.delay-#{$time} {
 		transition-delay: #{calc($time / 1000)}s;
 	}
-	.hover\@delay-#{$time}:hover {
-		transition-delay: #{calc($time / 1000)}s;
-	}
+	@include apply-pseudo-classes(
+		"delay-#{$time}",
+		"transition-delay",
+		"#{calc($time / 1000)}s"
+	);
+	@include apply-pseudo-elements(
+		"delay-#{$time}",
+		"transition-delay",
+		"#{calc($time / 1000)}s"
+	);
+	@include apply-min-breakpoint(
+		"delay-#{$time}",
+		"transition-delay",
+		"#{calc($time / 1000)}s"
+	);
+	@include apply-max-breakpoint(
+		"delay-#{$time}",
+		"transition-delay",
+		"#{calc($time / 1000)}s"
+	);
 }
 
 @each $property in ("all") {
-	.property-#{$property} {
+	.transition-#{$property} {
 		transition-property: #{$property};
 	}
-	.hover\@property-#{$property}:hover {
-		transition-property: #{$property};
-	}
+	@include apply-pseudo-classes(
+		"transition-#{$property}",
+		"transition-property",
+		"#{$property}"
+	);
+	@include apply-pseudo-elements(
+		"transition-#{$property}",
+		"transition-property",
+		"#{$property}"
+	);
+	@include apply-min-breakpoint(
+		"transition-#{$property}",
+		"transition-property",
+		"#{$property}"
+	);
+	@include apply-max-breakpoint(
+		"transition-#{$property}",
+		"transition-property",
+		"#{$property}"
+	);
 }
 
 // ? BORDER COLORS
-@each $colors, $colors-value in $ost-colors {
-	.border-#{$colors} {
-		border-color: #{$colors-value};
-	}
-	.hover\@border-#{$colors}:hover {
-		border-color: #{$colors-value};
+@each $color-name, $color-value in $oka-colors {
+	// Jika $color-value adalah map, lakukan looping lagi
+	@if meta.type-of($color-value) == "map" {
+		@each $shade, $shade-value in $color-value {
+			.border-#{$color-name}-#{$shade} {
+				border-color: #{$shade-value};
+			}
+			@include apply-pseudo-classes(
+				"border-#{$color-name}-#{$shade}",
+				"border-color",
+				"#{$shade-value}"
+			);
+			@include apply-pseudo-elements(
+				"border-#{$color-name}-#{$shade}",
+				"border-color",
+				"#{$shade-value}"
+			);
+			@include apply-min-breakpoint(
+				"border-#{$color-name}-#{$shade}",
+				"border-color",
+				"#{$shade-value}"
+			);
+			@include apply-max-breakpoint(
+				"border-#{$color-name}-#{$shade}",
+				"border-color",
+				"#{$shade-value}"
+			);
+		}
+	} @else {
+		.border-#{$color-name} {
+			border-color: #{$color-value};
+		}
+		@include apply-pseudo-classes(
+			"border-#{$color-name}",
+			"border-color",
+			"#{$color-value}"
+		);
+		@include apply-pseudo-elements(
+			"border-#{$color-name}",
+			"border-color",
+			"#{$color-value}"
+		);
+		@include apply-min-breakpoint(
+			"border-#{$color-name}",
+			"border-color",
+			"#{$color-value}"
+		);
+		@include apply-max-breakpoint(
+			"border-#{$color-name}",
+			"border-color",
+			"#{$color-value}"
+		);
 	}
 }
 
@@ -1433,9 +3194,26 @@ table {
 	.border-#{$i} {
 		border-width: #{calc($i * 0.0625)}rem;
 	}
-	.hover\@border-#{$i}:hover {
-		border-width: #{calc($i * 0.0625)}rem;
-	}
+	@include apply-pseudo-classes(
+		"border-#{$i}",
+		"border-width",
+		"#{calc($i * 0.0625)}rem"
+	);
+	@include apply-pseudo-elements(
+		"border-#{$i}",
+		"border-width",
+		"#{calc($i * 0.0625)}rem"
+	);
+	@include apply-min-breakpoint(
+		"border-#{$i}",
+		"border-width",
+		"#{calc($i * 0.0625)}rem"
+	);
+	@include apply-max-breakpoint(
+		"border-#{$i}",
+		"border-width",
+		"#{calc($i * 0.0625)}rem"
+	);
 }
 
 // ? BORDER STYLE
@@ -1443,49 +3221,102 @@ table {
 	.border-#{$style} {
 		border-style: #{$style};
 	}
-	.hover\@border-#{$style}:hover {
-		border-style: #{$style};
-	}
+	@include apply-pseudo-classes(
+		"border-#{$style}",
+		"border-style",
+		"#{$style}"
+	);
+	@include apply-pseudo-elements(
+		"border-#{$style}",
+		"border-style",
+		"#{$style}"
+	);
+	@include apply-min-breakpoint(
+		"border-#{$style}",
+		"border-style",
+		"#{$style}"
+	);
+	@include apply-max-breakpoint(
+		"border-#{$style}",
+		"border-style",
+		"#{$style}"
+	);
 }
 
 // ? VISIBILITY
-@each $visibility in ("visible", "hidden") {
+@each $visibility in ("visible", "hidden", "collapse") {
 	.visibility-#{$visibility} {
 		visibility: #{$visibility};
 	}
-	.hpver\@visibility-#{$visibility}:hover {
-		visibility: #{$visibility};
-	}
+	@include apply-pseudo-classes(
+		"visibility-#{$visibility}",
+		"visibility",
+		"#{$visibility}"
+	);
+	@include apply-pseudo-elements(
+		"visibility-#{$visibility}",
+		"visibility",
+		"#{$visibility}"
+	);
+	@include apply-min-breakpoint(
+		"visibility-#{$visibility}",
+		"visibility",
+		"#{$visibility}"
+	);
+	@include apply-max-breakpoint(
+		"visibility-#{$visibility}",
+		"visibility",
+		"#{$visibility}"
+	);
 }
 
 // ? FLEX GROW
 @for $i from 0 through 12 {
-	.flex-grow-#{$i} {
+	.f-grow-#{$i} {
 		flex-grow: #{$i};
 	}
-	.hover\@flex-grow-#{$i}:hover {
-		flex-grow: #{$i};
-	}
+	@include apply-pseudo-classes("f-grow-#{$i}", "flex-grow", "#{$i}");
+	@include apply-pseudo-elements("f-grow-#{$i}", "flex-grow", "#{$i}");
+	@include apply-min-breakpoint("f-grow-#{$i}", "flex-grow", "#{$i}");
+	@include apply-max-breakpoint("f-grow-#{$i}", "flex-grow", "#{$i}");
 }
 
 // ? FLEX SHRINK
 @for $i from 0 through 12 {
-	.flex-shrink-#{$i} {
+	.f-shrink-#{$i} {
 		flex-shrink: #{$i};
 	}
-	.hover\@flex-shrink-#{$i}:hover {
-		flex-shrink: #{$i};
-	}
+	@include apply-pseudo-classes("f-shrink-#{$i}", "flex-shrink", "#{$i}");
+	@include apply-pseudo-elements("f-shrink-#{$i}", "flex-shrink", "#{$i}");
+	@include apply-min-breakpoint("f-shrink-#{$i}", "flex-shrink", "#{$i}");
+	@include apply-max-breakpoint("f-shrink-#{$i}", "flex-shrink", "#{$i}");
 }
 
 // ? BACKGROUND SIZE
 @each $size, $size-value in ("auto": auto, "cover": cover, "contain": contain) {
-	.bg-size-#{$size} {
+	.bg-#{$size} {
 		background-size: #{$size-value};
 	}
-	.hover\@bg-size-#{$size}:hover {
-		background-size: #{$size-value};
-	}
+	@include apply-pseudo-classes(
+		"bg-#{$size}",
+		"background-size",
+		"#{$size-value}"
+	);
+	@include apply-pseudo-elements(
+		"bg-#{$size}",
+		"background-size",
+		"#{$size-value}"
+	);
+	@include apply-min-breakpoint(
+		"bg-#{$size}",
+		"background-size",
+		"#{$size-value}"
+	);
+	@include apply-max-breakpoint(
+		"bg-#{$size}",
+		"background-size",
+		"#{$size-value}"
+	);
 }
 
 // ? BACKGROUND POSITION
@@ -1506,9 +3337,26 @@ table {
 	.bg-pos-#{$position} {
 		background-position: #{$position-value};
 	}
-	.hover\@bg-pos-#{$position}:hover {
-		background-position: #{$position-value};
-	}
+	@include apply-pseudo-classes(
+		"bg-pos-#{$position}",
+		"background-position",
+		"#{$position-value}"
+	);
+	@include apply-pseudo-elements(
+		"bg-pos-#{$position}",
+		"background-position",
+		"#{$position-value}"
+	);
+	@include apply-min-breakpoint(
+		"bg-pos-#{$position}",
+		"background-position",
+		"#{$position-value}"
+	);
+	@include apply-max-breakpoint(
+		"bg-pos-#{$position}",
+		"background-position",
+		"#{$position-value}"
+	);
 }
 
 // ? BACKGROUND REPEAT
@@ -1524,9 +3372,26 @@ table {
 	.bg-#{$repeat} {
 		background-repeat: #{$repeat-value};
 	}
-	.hover\@bg-#{$repeat}:hover {
-		background-repeat: #{$repeat-value};
-	}
+	@include apply-pseudo-classes(
+		"bg-#{$repeat}",
+		"background-repeat",
+		"#{$repeat-value}"
+	);
+	@include apply-pseudo-elements(
+		"bg-#{$repeat}",
+		"background-repeat",
+		"#{$repeat-value}"
+	);
+	@include apply-min-breakpoint(
+		"bg-#{$repeat}",
+		"background-repeat",
+		"#{$repeat-value}"
+	);
+	@include apply-max-breakpoint(
+		"bg-#{$repeat}",
+		"background-repeat",
+		"#{$repeat-value}"
+	);
 }
 
 // ? LIST STYLE
@@ -1534,19 +3399,37 @@ table {
 	.list-#{$style} {
 		list-style: #{$style};
 	}
-	.hover\@list-#{$style}:hover {
-		list-style: #{$style};
-	}
+	@include apply-pseudo-classes("list-#{$style}", "list-style", "#{$style}");
+	@include apply-pseudo-elements("list-#{$style}", "list-style", "#{$style}");
+	@include apply-min-breakpoint("list-#{$style}", "list-style", "#{$style}");
+	@include apply-max-breakpoint("list-#{$style}", "list-style", "#{$style}");
 }
 
 // ? LIST STYLE POSITION
 @each $position in ("outside", "inside") {
-	.list-#{$position} {
+	.list-pos-#{$position} {
 		list-style-position: #{$position};
 	}
-	.hover\@list-#{$position}:hover {
-		list-style-position: #{$position};
-	}
+	@include apply-pseudo-classes(
+		"list-pos-#{$position}",
+		"list-style-position",
+		"#{$position}"
+	);
+	@include apply-pseudo-elements(
+		"list-pos-#{$position}",
+		"list-style-position",
+		"#{$position}"
+	);
+	@include apply-min-breakpoint(
+		"list-pos-#{$position}",
+		"list-style-position",
+		"#{$position}"
+	);
+	@include apply-max-breakpoint(
+		"list-pos-#{$position}",
+		"list-style-position",
+		"#{$position}"
+	);
 }
 
 // ? OBJECT FIT
@@ -1554,9 +3437,26 @@ table {
 	.obj-fit-#{$object} {
 		object-fit: #{$object};
 	}
-	.hover\@obj-fit-#{$object}:hover {
-		object-fit: #{$object};
-	}
+	@include apply-pseudo-classes(
+		"obj-fit-#{$object}",
+		"object-fit",
+		"#{$object}"
+	);
+	@include apply-pseudo-elements(
+		"obj-fit-#{$object}",
+		"object-fit",
+		"#{$object}"
+	);
+	@include apply-min-breakpoint(
+		"obj-fit-#{$object}",
+		"object-fit",
+		"#{$object}"
+	);
+	@include apply-max-breakpoint(
+		"obj-fit-#{$object}",
+		"object-fit",
+		"#{$object}"
+	);
 }
 
 // ? OBJECT POSITION
@@ -1564,9 +3464,26 @@ table {
 	.obj-pos-#{$object} {
 		object-position: #{$object};
 	}
-	.hover\@obj-pos-#{$object}:hover {
-		object-position: #{$object};
-	}
+	@include apply-pseudo-classes(
+		"obj-pos-#{$object}",
+		"object-position",
+		"#{$object}"
+	);
+	@include apply-pseudo-elements(
+		"obj-pos-#{$object}",
+		"object-position",
+		"#{$object}"
+	);
+	@include apply-min-breakpoint(
+		"obj-pos-#{$object}",
+		"object-position",
+		"#{$object}"
+	);
+	@include apply-max-breakpoint(
+		"obj-pos-#{$object}",
+		"object-position",
+		"#{$object}"
+	);
 }
 
 // ? LINE HEIGHT
@@ -1583,9 +3500,26 @@ table {
 	.line-#{$height} {
 		height: #{$height-value};
 	}
-	.hover\@line-#{$height}:hover {
-		height: #{$height-value};
-	}
+	@include apply-pseudo-classes(
+		"line-#{$height}",
+		"height",
+		"#{$height-value}"
+	);
+	@include apply-pseudo-elements(
+		"line-#{$height}",
+		"height",
+		"#{$height-value}"
+	);
+	@include apply-min-breakpoint(
+		"line-#{$height}",
+		"height",
+		"#{$height-value}"
+	);
+	@include apply-max-breakpoint(
+		"line-#{$height}",
+		"height",
+		"#{$height-value}"
+	);
 }
 
 // ? LETTER SPACING
@@ -1602,9 +3536,26 @@ table {
 	.letter-#{$spacing} {
 		letter-spacing: #{$spacing-value};
 	}
-	.hover\@letter-#{$spacing}:hover {
-		letter-spacing: #{$spacing-value};
-	}
+	@include apply-pseudo-classes(
+		"letter-#{$spacing}",
+		"letter-spacing",
+		"#{$spacing-value}"
+	);
+	@include apply-pseudo-elements(
+		"letter-#{$spacing}",
+		"letter-spacing",
+		"#{$spacing-value}"
+	);
+	@include apply-min-breakpoint(
+		"letter-#{$spacing}",
+		"letter-spacing",
+		"#{$spacing-value}"
+	);
+	@include apply-max-breakpoint(
+		"letter-#{$spacing}",
+		"letter-spacing",
+		"#{$spacing-value}"
+	);
 }
 
 // ? ASPECT RATIO
@@ -1638,11 +3589,29 @@ table {
 		)
 {
 	.ratio-#{$ratio} {
-		aspect-ratio: #{nth($ratio-value, 1)} / #{nth($ratio-value, 2)};
+		aspect-ratio: #{list.nth($ratio-value, 1)} /
+			#{list.nth($ratio-value, 2)};
 	}
-	.hover\@ratio-#{$ratio}:hover {
-		aspect-ratio: #{nth($ratio-value, 1)} / #{nth($ratio-value, 2)};
-	}
+	@include apply-pseudo-classes(
+		"ratio-#{$ratio}",
+		"aspect-ratio",
+		"#{list.nth($ratio-value, 1)} / #{list.nth($ratio-value, 2)}"
+	);
+	@include apply-pseudo-elements(
+		"ratio-#{$ratio}",
+		"aspect-ratio",
+		"#{list.nth($ratio-value, 1)} / #{list.nth($ratio-value, 2)}"
+	);
+	@include apply-min-breakpoint(
+		"ratio-#{$ratio}",
+		"aspect-ratio",
+		"#{list.nth($ratio-value, 1)} / #{list.nth($ratio-value, 2)}"
+	);
+	@include apply-max-breakpoint(
+		"ratio-#{$ratio}",
+		"aspect-ratio",
+		"#{list.nth($ratio-value, 1)} / #{list.nth($ratio-value, 2)}"
+	);
 }
 
 // ? FILTERS
@@ -1686,9 +3655,26 @@ table {
 		.filters-#{$class-name} {
 			filter: #{$value};
 		}
-		.hover\@filters-#{$class-name}:hover {
-			filter: #{$value};
-		}
+		@include apply-pseudo-classes(
+			"filters-#{$class-name}",
+			"filter",
+			"#{$value}"
+		);
+		@include apply-pseudo-elements(
+			"filters-#{$class-name}",
+			"filter",
+			"#{$value}"
+		);
+		@include apply-min-breakpoint(
+			"filters-#{$class-name}",
+			"filter",
+			"#{$value}"
+		);
+		@include apply-max-breakpoint(
+			"filters-#{$class-name}",
+			"filter",
+			"#{$value}"
+		);
 	}
 }
 
@@ -1697,9 +3683,26 @@ table {
 	.mix-blend-#{$blend} {
 		mix-blend-mode: #{$blend};
 	}
-	.hover\@mix-blend-#{$blend}:hover {
-		mix-blend-mode: #{$blend};
-	}
+	@include apply-pseudo-classes(
+		"mix-blend-#{$blend}",
+		"mix-blend-mode",
+		"#{$blend}"
+	);
+	@include apply-pseudo-elements(
+		"mix-blend-#{$blend}",
+		"mix-blend-mode",
+		"#{$blend}"
+	);
+	@include apply-min-breakpoint(
+		"mix-blend-#{$blend}",
+		"mix-blend-mode",
+		"#{$blend}"
+	);
+	@include apply-max-breakpoint(
+		"mix-blend-#{$blend}",
+		"mix-blend-mode",
+		"#{$blend}"
+	);
 }
 
 // ? MIX BLEND MODE
@@ -1707,7 +3710,24 @@ table {
 	.bg-blend-#{$blend} {
 		background-blend-mode: #{$blend};
 	}
-	.hover\@bg-blend-#{$blend}:hover {
-		background-blend-mode: #{$blend};
-	}
+	@include apply-pseudo-classes(
+		"bg-blend-#{$blend}",
+		"background-blend-mode",
+		"#{$blend}"
+	);
+	@include apply-pseudo-elements(
+		"bg-blend-#{$blend}",
+		"background-blend-mode",
+		"#{$blend}"
+	);
+	@include apply-min-breakpoint(
+		"bg-blend-#{$blend}",
+		"background-blend-mode",
+		"#{$blend}"
+	);
+	@include apply-max-breakpoint(
+		"bg-blend-#{$blend}",
+		"background-blend-mode",
+		"#{$blend}"
+	);
 }
